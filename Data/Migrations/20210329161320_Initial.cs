@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Data.Migrations
 {
@@ -33,6 +34,7 @@ namespace Data.Migrations
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateOfMovingIn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Owed = table.Column<int>(type: "int", nullable: false),
                     Paid = table.Column<int>(type: "int", nullable: false),
                     RentedPropertyId = table.Column<int>(type: "int", nullable: true)
