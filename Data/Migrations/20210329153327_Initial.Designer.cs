@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(RMSContext))]
-    [Migration("20210329150908_Initial")]
+    [Migration("20210329153327_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,13 +28,19 @@ namespace Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("LivingCapacity")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
+                    b.Property<string>("Adress")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Area")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Beds")
+                        .HasColumnType("int");
+
                     b.Property<int>("Rent")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Rooms")
                         .HasColumnType("int");
 
                     b.HasKey("Id");

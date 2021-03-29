@@ -5,8 +5,10 @@ namespace Data.Models
     public class Property
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public int LivingCapacity { get; set; }
+        public string Adress { get; set; }
+        public int Beds { get; set; }
+        public int Rooms { get; set; }
+        public int Area { get; set; }
         public int Rent { get; set; }
         public virtual IEnumerable<Tenant> Tenants { get; set; }
     }

@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rent-Management-System", "Rent-Management-System\Rent-Management-System.csproj", "{C4B5994A-AD09-4964-B7EF-F18C41EE7101}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rent-Management-System", "Rent-Management-System\Rent-Management-System.csproj", "{C4B5994A-AD09-4964-B7EF-F18C41EE7101}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{055298A9-54FB-4074-8A1F-C487C9B06E0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{055298A9-54FB-4074-8A1F-C487C9B06E0D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{7E8E33BD-DE78-4B76-BDF2-2B8D5F4282AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{7E8E33BD-DE78-4B76-BDF2-2B8D5F4282AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{CF1FE222-C203-4015-A1D0-228C2B16E1E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{CF1FE222-C203-4015-A1D0-228C2B16E1E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

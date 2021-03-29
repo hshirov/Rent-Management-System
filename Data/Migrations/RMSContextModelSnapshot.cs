@@ -26,13 +26,19 @@ namespace Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("LivingCapacity")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
+                    b.Property<string>("Adress")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Area")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Beds")
+                        .HasColumnType("int");
+
                     b.Property<int>("Rent")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Rooms")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
