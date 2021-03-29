@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,9 @@ namespace Rent_Management_System
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddTransient<IProperty, PropertyService>();
+            services.AddTransient<ITenant, TenantService>();
 
             services.AddDbContext<RMSContext>(
                options => options.UseSqlServer(Configuration.GetConnectionString("RentManagementSystem")));
