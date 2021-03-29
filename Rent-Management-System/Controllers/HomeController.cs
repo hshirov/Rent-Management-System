@@ -1,15 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Data;
+using Microsoft.AspNetCore.Mvc;
 using Rent_Management_System.Models;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Rent_Management_System.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IProperty _properties;
+        private readonly ITenant _tenants;
+
+        public HomeController(IProperty properties, ITenant tenants)
+        {
+            _properties = properties;
+            _tenants = tenants;
+        }
 
         public IActionResult Index()
         {

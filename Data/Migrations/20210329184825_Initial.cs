@@ -13,7 +13,7 @@ namespace Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Adress = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Beds = table.Column<int>(type: "int", nullable: false),
                     Rooms = table.Column<int>(type: "int", nullable: false),
                     Area = table.Column<int>(type: "int", nullable: false),
