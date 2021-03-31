@@ -18,7 +18,13 @@ namespace Rent_Management_System.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            HomeViewModel model = new HomeViewModel
+            {
+                PropertyCount = _properties.GetNumberOfProperties(),
+                TenantCount = _tenants.GetNumberOfTenants()
+            };
+
+            return View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

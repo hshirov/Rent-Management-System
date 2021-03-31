@@ -37,6 +37,11 @@ namespace Services
             return GetAll().Where(t => t.RentedProperty.Id == propertyId);
         }
 
+        public int GetNumberOfTenants()
+        {
+            return _context.Tenants.Count();
+        }
+
         public void Remove(int id)
         {
             _context.Tenants.Remove(Get(id));

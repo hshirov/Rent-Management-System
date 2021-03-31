@@ -32,6 +32,11 @@ namespace Services
             return _context.Properties.Include(p => p.Tenants);
         }
 
+        public int GetNumberOfProperties()
+        {
+            return _context.Properties.Count();
+        }
+
         public void Remove(int id)
         {
             _context.Properties.Remove(Get(id));

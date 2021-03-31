@@ -10,5 +10,6 @@ namespace Data
         void Update(Property property);
         Property Get(int id);
         IEnumerable<Property> GetAll();
+        int GetNumberOfProperties();
     }
 }

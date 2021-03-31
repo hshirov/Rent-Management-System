@@ -103,9 +103,9 @@ a[data-toggle="collapse"] {
         margin-left: -250px;
     }
 
-        #sidebar.active {
-            margin-left: 0;
-        }
+    #sidebar.active {
+        margin-left: 0;
+    }
 }
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
@@ -194,6 +194,7 @@ button:focus {
     text-align: right;
     color: white;
     font-weight: bold;
+    width: 100%;
 }
 
 .tenants-item {
@@ -221,7 +222,7 @@ button:focus {
     margin-top: 15px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1600px) {
     .menu {
         padding: 0;
     }
