@@ -1,0 +1,63 @@
+﻿/* HOME.CSS */
+
+.container{
+    margin: 0;
+}
+
+button:focus {
+    outline: 0;
+}
+
+.menu{
+    padding: 15px 50px;
+}
+
+.menu-item {
+    -ms-border-radius: 6px;
+    border-radius: 6px;
+    height: 95%;
+    margin-bottom: 5%;
+    padding: 5px 10px;
+    font-size: 20px;
+    text-align: right;
+    color: #ffffff;
+    font-weight: bold;
+    width: 100%;
+}
+
+.tenants-item {
+    background-color: #337bb7;
+}
+
+.property-item {
+    background-color: #f1a73c;
+}
+
+.payment-item {
+    background-color: #01AD7A;
+}
+
+.rent-collected-item {
+    background-color: #d8534e;
+}
+
+.item-title {
+    text-align: right;
+}
+
+.item-icon {
+    text-align: left;
+    margin-top: 15px;
+}
+
+@media (max-width: 1600px) {
+    .menu {
+        padding: 0;
+    }
+}
+
+.item-count{
+    color: #f5f5f5;
+    font-size: 30px;
+    font-weight: 100;
+}

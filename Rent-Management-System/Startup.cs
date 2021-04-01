@@ -1,16 +1,11 @@
 using Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Rent_Management_System
 {
@@ -31,7 +26,7 @@ namespace Rent_Management_System
             services.AddTransient<IProperty, PropertyService>();
             services.AddTransient<ITenant, TenantService>();
 
-            services.AddDbContext<RMSContext>(
+            services.AddDbContext<RmsContext>(
                options => options.UseSqlServer(Configuration.GetConnectionString("RentManagementSystem")));
         }
 

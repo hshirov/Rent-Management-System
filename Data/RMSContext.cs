@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data
 {
-    public class RMSContext : DbContext
+    public class RmsContext : DbContext
     {
-        public RMSContext(DbContextOptions options) : base(options) { }
-        public RMSContext() { }
+        public RmsContext(DbContextOptions options) : base(options) { }
+        public RmsContext() { }
 
         public virtual DbSet<Tenant> Tenants { get; set; }
         public virtual DbSet<Property> Properties { get; set; }

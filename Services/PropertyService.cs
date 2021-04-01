@@ -8,9 +8,9 @@ namespace Services
 {
     public class PropertyService : IProperty
     {
-        private RMSContext _context;
+        private RmsContext _context;
 
-        public PropertyService(RMSContext context)
+        public PropertyService(RmsContext context)
         {
             _context = context;
         }

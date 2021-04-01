@@ -8,9 +8,9 @@ namespace Services
 {
     public class TenantService : ITenant
     {
-        private RMSContext _context;
+        private RmsContext _context;
 
-        public TenantService(RMSContext context)
+        public TenantService(RmsContext context)
         {
             _context = context;
         }
