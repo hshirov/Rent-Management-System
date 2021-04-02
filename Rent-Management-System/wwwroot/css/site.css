@@ -70,3 +70,18 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+main {
+    padding: 15px 2%;
+}
+
+.centered-form{
+    width: 65%;
+    margin: auto;
+}
+
+@media (max-width: 970px) {
+    .centered-form {
+        width: 100%;
+    }
+}

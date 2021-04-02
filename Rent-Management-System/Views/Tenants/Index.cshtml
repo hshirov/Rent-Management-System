@@ -1,3 +1,12 @@
-﻿@{
-    ViewData["Title"] = "Rent Management";
+﻿@model IEnumerable<Data.Models.Tenant>
+
+@{
+    ViewData["Title"] = "Tenants";
 }
+
+<ul>
+    @foreach (var tenant in Model)
+    {
+        <li>@tenant.FirstName @tenant.LastName</li>
+    }
+</ul>

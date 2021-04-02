@@ -1,0 +1,63 @@
+﻿@model Rent_Management_System.Models.AddTenantModel
+
+@{
+    ViewData["Title"] = "Add Tenant";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="centered-form">
+        <div class="mb-3 ml-3">
+            <h2>Add New Tenant</h2>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-sm-6">
+                @Html.LabelFor(model => model.Tenant.FirstName, new { @class = "control-label col-6" })
+                <div class="col-12">
+                    @Html.EditorFor(m => m.Tenant.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Tenant.FirstName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                @Html.LabelFor(model => model.Tenant.LastName, new { @class = "control-label col-6" })
+                <div class="col-12">
+                    @Html.EditorFor(m => m.Tenant.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Tenant.LastName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tenant.Email, new { @class = "control-label col-6" })
+            <div class="col-12">
+                @Html.EditorFor(m => m.Tenant.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Tenant.Email, "", new { @class = "text-danger" })
+            </div>
+         </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tenant.PhoneNumber, new { @class = "control-label col-6" })
+            <div class="col-12">
+                @Html.EditorFor(m => m.Tenant.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Tenant.PhoneNumber, "", new { @class = "text-danger" })
+            </div>
+         </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tenant.DateOfMovingIn, new { @class = "control-label col-6" })
+            <div class="col-12">
+                @Html.EditorFor(m => m.Tenant.DateOfMovingIn, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                @Html.ValidationMessageFor(model => model.Tenant.DateOfMovingIn, "", new { @class = "text-danger" })
+            </div>
+         </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tenant.RentedProperty, new { @class = "control-label col-6" })
+            <div class="col-12">
+                @Html.DropDownListFor(model => model.RentedPropertyId, new SelectList(Model.Properties.Select(m => m), "Id", "Address"), "Select Property", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group centered-button">
+                <div class="col-offset-2 col-3">
+                    <button type="submit" class="btn btn-primary btn-block">Add</button>
+                </div>
+            </div>
+    </div>
+}

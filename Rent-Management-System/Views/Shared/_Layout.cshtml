@@ -25,10 +25,10 @@
                     <a href="#propertySubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Property</a>
                     <ul class="collapse list-unstyled" id="propertySubmenu">
                         <li>
-                            <a href="#">Add New Property</a>
+                            <a asp-controller="Property" asp-action="Add">Add New Property</a>
                         </li>
                         <li>
-                            <a href="#">View Property</a>
+                            <a asp-controller="Property" asp-action="Index">View Property</a>
                         </li>
                     </ul>
                 </li>
@@ -36,10 +36,10 @@
                     <a href="#tenantSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Tenants</a>
                     <ul class="collapse list-unstyled" id="tenantSubmenu">
                         <li>
-                            <a href="#">Add New Tenant</a>
+                            <a asp-controller="Tenants" asp-action="Add">Add New Tenant</a>
                         </li>
                         <li>
-                            <a href="#">View Tenants</a>
+                            <a asp-controller="Tenants" asp-action="Index">View Tenants</a>
                         </li>
                     </ul>
                 </li>

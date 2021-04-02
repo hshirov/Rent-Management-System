@@ -8,12 +8,7 @@ button:focus {
     outline: 0;
 }
 
-.menu{
-    padding: 15px 50px;
-}
-
 .menu-item {
-    -ms-border-radius: 6px;
     border-radius: 6px;
     height: 95%;
     margin-bottom: 5%;
@@ -48,12 +43,6 @@ button:focus {
 .item-icon {
     text-align: left;
     margin-top: 15px;
-}
-
-@media (max-width: 1600px) {
-    .menu {
-        padding: 0;
-    }
 }
 
 .item-count{
