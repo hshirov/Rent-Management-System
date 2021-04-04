@@ -1,8 +1,12 @@
 ﻿@model IEnumerable<Data.Models.Property>
 
 @{
-    ViewData["Title"] = "Rent Management";
+    ViewData["Title"] = "Property";
 }
+
+<div class="mb-3">
+    <a asp-controller="Property" asp-action="Add">Add Property</a>
+</div>
 
 <ul>
     @foreach (var property in Model)

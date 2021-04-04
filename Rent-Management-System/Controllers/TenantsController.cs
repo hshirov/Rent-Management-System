@@ -18,7 +18,7 @@ namespace Rent_Management_System.Controllers
             _tenants = tenants;
         }
 
-        public IActionResult Index()
+        public IActionResult All()
         {
             IEnumerable<Tenant> tenants = _tenants.GetAll();
 

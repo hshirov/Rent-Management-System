@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Data.Models.Tenant>
+
+@{
+    ViewData["Title"] = "Tenants";
+}
+
+<div class="mb-3">
+    <a asp-controller="Tenants" asp-action="Add">Add Tenant</a>
+</div>
+
+<ul>
+    @foreach (var tenant in Model)
+    {
+        <li><a asp-controller="Tenants" asp-action="Index" asp-route-id="@tenant.Id">@tenant.FirstName @tenant.LastName</a></li>
+    }
+</ul>
