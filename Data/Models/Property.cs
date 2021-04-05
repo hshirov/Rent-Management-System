@@ -13,7 +13,7 @@ namespace Data.Models
         public int Beds { get; set; }
         [Range(1, 99, ErrorMessage = "Invalid value.")]
         public int Rooms { get; set; }
-        [Range(1, 99, ErrorMessage = "Invalid value.")]
+        [Range(1, 99999, ErrorMessage = "Invalid value.")]
         [Display(Name = "Area In Square Meters")]
         public int Area { get; set; }
         [Display(Name = "Monthly Rent In Euro")]

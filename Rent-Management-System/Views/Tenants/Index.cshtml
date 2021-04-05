@@ -1,0 +1,19 @@
+﻿@model Rent_Management_System.Models.TenantIndexView
+
+@{
+    ViewData["Title"] = Model.Tenant.FirstName + " " + Model.Tenant.LastName;
+}
+
+<h2>@Model.Tenant.FirstName @Model.Tenant.LastName</h2>
+@{ if (Model.MoneyOwed > 0)
+    {
+        <h4>Money Owed: @Model.MoneyOwed</h4>
+        <form method="post">
+            <button asp-action="PayRent" asp-route-id="@Model.Tenant.Id" class="btn btn-info">Mark as paid</button>
+        </form>
+    }
+    else
+    {
+        <h4>Tenant is all payed up</h4>
+    }
+}

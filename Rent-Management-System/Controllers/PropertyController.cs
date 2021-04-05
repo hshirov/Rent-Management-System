@@ -40,7 +40,7 @@ namespace Rent_Management_System.Controllers
             {
                 _properties.Add(model);
 
-                return RedirectToAction("Index", "Property");
+                return RedirectToAction("All", "Property");
             }
 
             return View(model);

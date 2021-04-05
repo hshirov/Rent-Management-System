@@ -1,0 +1,40 @@
+﻿@model Rent_Management_System.Models.AddPaymentModel
+
+@{
+    ViewData["Title"] = "Add Payment";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="centered-form">
+        <div class="mb-3 ml-3">
+            <h2>Add Payment</h2>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Payment.Tenant, new { @class = "control-label col-6" })
+            <div class="col-12">
+                @Html.DropDownListFor(model => model.TenantId, new SelectList(Model.Tenants.Select(m => m), "Id", "FullName"), "Select Tenant", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Payment.Amount, new { @class = "control-label col-6" })
+            <div class="col-12">
+                @Html.EditorFor(model => model.Payment.Amount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Payment.Amount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Payment.Date, new { @class = "control-label col-6" })
+            <div class="col-12">
+                @Html.EditorFor(m => m.Payment.Date, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                @Html.ValidationMessageFor(model => model.Payment.Date, "", new { @class = "text-danger" })
+            </div>
+         </div>
+        <div class="form-group centered-button">
+            <div class="col-offset-2 col-3">
+                <button type="submit" class="btn btn-primary btn-block">Add Payment</button>
+            </div>
+        </div>
+    </div>
+}

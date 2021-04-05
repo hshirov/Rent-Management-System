@@ -25,6 +25,7 @@ namespace Rent_Management_System
 
             services.AddTransient<IProperty, PropertyService>();
             services.AddTransient<ITenant, TenantService>();
+            services.AddTransient<IPayment, PaymentService>();
 
             services.AddDbContext<RmsContext>(
                options => options.UseSqlServer(Configuration.GetConnectionString("RentManagementSystem")));

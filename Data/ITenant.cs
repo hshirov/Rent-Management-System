@@ -12,5 +12,8 @@ namespace Data
         IEnumerable<Tenant> GetAll();
         IEnumerable<Tenant> GetAllFromProperty(int propertyId);
         int GetNumberOfTenants();
+        int GetMonthsSinceLastPayment(int tenantId);
+        double GetMonthlyRent(int tenantId, int propertyId);
+        double GetMoneyOwed(int tenantId);
     }
 }

@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Data.Models.Payment>
+
+@{
+    ViewData["Title"] = "Payments";
+}
+
+<ul>
+    @foreach (var payment in Model)
+    {
+        <li>@payment.Tenant.FullName - €@payment.Amount - @payment.Date</li>
+    }
+</ul>

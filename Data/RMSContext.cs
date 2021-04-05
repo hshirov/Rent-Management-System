@@ -10,5 +10,6 @@ namespace Data
 
         public virtual DbSet<Tenant> Tenants { get; set; }
         public virtual DbSet<Property> Properties { get; set; }
+        public virtual DbSet<Payment> Payments { get; set; }
     }
 }

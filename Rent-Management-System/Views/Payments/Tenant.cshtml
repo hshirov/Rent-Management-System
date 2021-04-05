@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Data.Models.Payment>
+
+@{
+    ViewData["Title"] = "Payments";
+}
+
+
+<h3>@Model.FirstOrDefault().Tenant.FullName</h3>
+
+<div class="mb-3">
+    <a asp-controller="Payments" asp-action="Add">Add Payment</a>
+</div>
+
+<ul>
+    @foreach (var payment in Model)
+    {
+        <li>@payment.Tenant.FullName - €@payment.Amount</li>
+    }
+</ul>

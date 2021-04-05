@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Data.Models
@@ -14,6 +15,7 @@ namespace Data.Models
         [StringLength(50)]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
+        public string FullName { get; set; }
         [Required(ErrorMessage = "Email is required.")]
         [EmailAddress]
         public string Email { get; set; }
@@ -24,9 +26,10 @@ namespace Data.Models
         [Display(Name = "Date Of Moving In")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime DateOfMovingIn { get; set; }
-        public int Owed { get; set; }
-        public int Paid { get; set; }
+        public double MonthlyRent { get; set; }
+        public double MoneyOwed { get; set; }
         [Display(Name = "Rented Property")]
         public virtual Property RentedProperty { get; set; }
+        public virtual IEnumerable<Payment> Payments { get; set; }
     }
 }
