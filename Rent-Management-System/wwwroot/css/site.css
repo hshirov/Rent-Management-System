@@ -85,3 +85,15 @@ main {
         width: 100%;
     }
 }
+
+/* property list css */
+
+.secondary-text {
+    font-size: 15px;
+    color: #f2f2f2;
+}
+
+.property-list-item {
+    background-color: #1b6ec2;
+    min-height: 100px;
+}

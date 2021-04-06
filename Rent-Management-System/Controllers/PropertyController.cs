@@ -13,10 +13,17 @@ namespace Rent_Management_System.Controllers
         {
             _properties = properties;
         }
+
+        public IActionResult Index(int id)
+        {
+            Property model = _properties.Get(id);
+
+            return View(model);
+        }
+
         public IActionResult All()
         {
             IEnumerable<Property> properties = _properties.GetAll();
-
             return View(properties);
         }
 

@@ -1,0 +1,11 @@
+﻿@model Data.Models.Property
+
+@{ 
+    ViewData["Title"] = Model.Address;
+}
+
+<div class="mb-3">
+    <h3>@Model.Address</h3>
+</div>
+<h4>@Model.Area &#13217;</h4>
+<h5>@Model.Rooms room@(Model.Rooms > 1 ? "s" : ""), @Model.Beds bed@(Model.Beds > 1 ? "s" : "").</h5>

@@ -7,10 +7,22 @@
 <div class="mb-3">
     <a asp-controller="Property" asp-action="Add">Add Property</a>
 </div>
-
-<ul>
-    @foreach (var property in Model)
-    {
-        <li>@property.Address</li>
-    }
-</ul>
+<div>
+    <div class="row">
+        @foreach (var property in Model)
+        {           
+            <div class="col-xl-3 col-lg-6 col-sm-12">
+                <a asp-controller="Property" asp-action="Index" asp-route-id="@property.Id">
+                    <div class="menu-item property-list-item">
+                        <div class="row">
+                            <div class="item-title col">
+                                @property.Address <br />
+                                <p class="secondary-text">@property.Tenants.Count() Tenants</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+</div>
