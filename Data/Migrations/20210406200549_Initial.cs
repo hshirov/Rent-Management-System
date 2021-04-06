@@ -38,6 +38,7 @@ namespace Data.Migrations
                     DateOfMovingIn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     MonthlyRent = table.Column<double>(type: "float", nullable: false),
                     MoneyOwed = table.Column<double>(type: "float", nullable: false),
+                    IsKickedOut = table.Column<bool>(type: "bit", nullable: false),
                     RentedPropertyId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>

@@ -20,9 +20,13 @@ namespace Services
             _payments = payments;
         }
 
-        public void Add(Tenant tenant)
+        public void Add(Tenant tenant, int rentedPropertyId)
         {
             tenant.FullName = tenant.FirstName + " " + tenant.LastName;
+            tenant.RentedProperty = _properties.Get(rentedPropertyId);
+            tenant.MonthlyRent = GetMonthlyRent(tenant.Id, rentedPropertyId);
+            tenant.IsKickedOut = false;
+
             _context.Add(tenant);
             _context.SaveChanges();
         }
@@ -46,12 +50,12 @@ namespace Services
 
         public double GetMoneyOwed(int tenantId)
         {
-            int factor = GetMonthsSinceLastPayment(tenantId);
+            int factor = GetMonthsSinceMovingIn(tenantId);
 
             // If the tenent has no previous payments, get the date of moving in
-            if (_payments.GetAllFromTenant(tenantId).FirstOrDefault() == null)
+            if (_payments.GetAllFromTenant(tenantId).FirstOrDefault() != null)
             {
-                factor = GetMonthsSinceMovingIn(tenantId);             
+                factor = GetMonthsSinceLastPayment(tenantId);
             }
 
             return GetMonthlyRent(tenantId, Get(tenantId).RentedProperty.Id) * factor;
@@ -75,9 +79,18 @@ namespace Services
             return _context.Tenants.Count();
         }
 
-        public void Remove(int id)
+        public bool IsEmailTaken(string email)
         {
-            _context.Tenants.Remove(Get(id));
+            return GetAll().Any(t => t.Email == email);
+        }
+
+        public void KickOut(int id)
+        {
+            Tenant tenant = Get(id);
+            _context.Update(tenant);
+
+            tenant.IsKickedOut = true;
+
             _context.SaveChanges();
         }
 

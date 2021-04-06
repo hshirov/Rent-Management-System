@@ -70,18 +70,22 @@ namespace Rent_Management_System.Controllers
 
             if (ModelState.IsValid)
             {
+                if (_tenants.IsEmailTaken(model.Tenant.Email))
+                {
+                    ModelState.AddModelError("Tenant.Email", "This email is already taken.");
+                    return View(model);
+                }
+
                 Tenant newTenant = new Tenant()
                 {
                     FirstName = model.Tenant.FirstName,
                     LastName = model.Tenant.LastName,
                     Email = model.Tenant.Email,
                     PhoneNumber = model.Tenant.PhoneNumber,
-                    DateOfMovingIn = model.Tenant.DateOfMovingIn,
-                    RentedProperty = _properties.Get(model.RentedPropertyId),
-                    MonthlyRent =  _tenants.GetMonthlyRent(model.Tenant.Id, model.RentedPropertyId)
+                    DateOfMovingIn = model.Tenant.DateOfMovingIn
                 };
 
-                _tenants.Add(newTenant);
+                _tenants.Add(newTenant, model.RentedPropertyId);
 
                 return RedirectToAction("All");
             }
@@ -102,6 +106,14 @@ namespace Rent_Management_System.Controllers
             _payments.Add(payment);
             
             return RedirectToAction("Index", new { id = id });
+        }
+
+        [HttpPost]
+        public IActionResult Remove(int id)
+        {
+            _tenants.KickOut(id);
+
+            return RedirectToAction("All");
         }
     }
 }

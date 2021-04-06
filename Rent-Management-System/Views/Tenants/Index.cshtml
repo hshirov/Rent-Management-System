@@ -17,4 +17,13 @@
     {
         <h4>Tenant is all payed up</h4>
     }
+
+    if (Model.Tenant.IsKickedOut)
+    {
+        <h1>TENANT WAS KICKED OUT</h1>
+    }
 }
+
+<form method="post">
+    <button asp-action="Remove" asp-route-id="@Model.Tenant.Id" class="btn btn-danger">Kick Out</button>
+</form>

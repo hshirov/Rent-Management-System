@@ -5,8 +5,8 @@ namespace Data
 {
     public interface ITenant
     {
-        void Add(Tenant tenant);
-        void Remove(int id);
+        void Add(Tenant tenant, int rentedPropertyId);
+        void KickOut(int id);
         void Update(Tenant tenant);
         Tenant Get(int id);
         IEnumerable<Tenant> GetAll();
@@ -14,5 +14,6 @@ namespace Data
         int GetNumberOfTenants();
         double GetMonthlyRent(int tenantId, int propertyId);
         double GetMoneyOwed(int tenantId);
+        bool IsEmailTaken(string email);
     }
 }

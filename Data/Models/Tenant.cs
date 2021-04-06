@@ -32,6 +32,7 @@ namespace Data.Models
         public DateTime DateOfMovingIn { get; set; }
         public double MonthlyRent { get; set; }
         public double MoneyOwed { get; set; }
+        public bool IsKickedOut { get; set; }
         [Display(Name = "Rented Property")]
         public virtual Property RentedProperty { get; set; }
         public virtual IEnumerable<Payment> Payments { get; set; }
