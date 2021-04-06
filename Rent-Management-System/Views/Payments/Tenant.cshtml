@@ -4,16 +4,23 @@
     ViewData["Title"] = "Payments";
 }
 
-
-<h3>@Model.FirstOrDefault().Tenant.FullName</h3>
-
 <div class="mb-3">
-    <a asp-controller="Payments" asp-action="Add">Add Payment</a>
+    <h3>@Model.FirstOrDefault().Tenant.FullName</h3>
 </div>
-
-<ul>
-    @foreach (var payment in Model)
-    {
-        <li>@payment.Tenant.FullName - €@payment.Amount</li>
-    }
-</ul>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Amount in €</th>
+            <th scope="col">Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var payment in Model)
+        {
+            <tr>
+                <td>@payment.Amount</td>
+                <td>@payment.Date.ToString("dd/MM/yyyy")</td>
+            </tr>
+        }
+    </tbody>
+</table>

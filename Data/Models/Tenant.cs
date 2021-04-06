@@ -10,10 +10,14 @@ namespace Data.Models
         [Required(ErrorMessage = "First name is required.")]
         [StringLength(50)]
         [Display(Name = "First Name")]
+        [RegularExpression("[a-zA-Z]+", ErrorMessage = "Name must contain letters only.")]
+        [MinLength(2, ErrorMessage = "The minimun length is 2")]
         public string FirstName { get; set; }
         [Required(ErrorMessage = "Last name is required.")]
         [StringLength(50)]
         [Display(Name = "Last Name")]
+        [RegularExpression("[a-zA-Z]+", ErrorMessage = "Name must contain letters only.")]
+        [MinLength(2, ErrorMessage = "The minimun length is 2")]
         public string LastName { get; set; }
         public string FullName { get; set; }
         [Required(ErrorMessage = "Email is required.")]

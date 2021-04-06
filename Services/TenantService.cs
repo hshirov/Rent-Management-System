@@ -46,31 +46,28 @@ namespace Services
 
         public double GetMoneyOwed(int tenantId)
         {
-            // If there are no payments yet, you still need to pay for the first month
-            if(_payments.GetAllFromTenant(tenantId).FirstOrDefault() == null)
+            int factor = GetMonthsSinceLastPayment(tenantId);
+
+            // If the tenent has no previous payments, get the date of moving in
+            if (_payments.GetAllFromTenant(tenantId).FirstOrDefault() == null)
             {
-                return Get(tenantId).MonthlyRent;
+                factor = GetMonthsSinceMovingIn(tenantId);             
             }
 
-            return Get(tenantId).MonthlyRent * GetMonthsSinceLastPayment(tenantId);
+            return GetMonthlyRent(tenantId, Get(tenantId).RentedProperty.Id) * factor;
         }
 
         public double GetMonthlyRent(int tenantId, int propertyId)
         {
             // Split the rent equally between tenants
-            return _properties.Get(propertyId).Rent / _properties.GetNumberOfTenants(propertyId);
-        }
+            int numberOfTenants = GetNumberOfTenantsInProperty(propertyId);
 
-        public int GetMonthsSinceLastPayment(int tenantId)
-        {
-            // Check if payments is empty
-            if(_payments.GetAllFromTenant(tenantId).FirstOrDefault() == null)
+            if(numberOfTenants > 0)
             {
-                return 0;
+                return _properties.Get(propertyId).Rent / numberOfTenants;
             }
 
-            TimeSpan date = DateTime.Now - Get(tenantId).Payments.Last().Date;
-            return date.Days / 30;
+            return _properties.Get(propertyId).Rent;
         }
 
         public int GetNumberOfTenants()
@@ -90,6 +87,28 @@ namespace Services
             _context.Entry(entityToUpdate).CurrentValues.SetValues(tenant);
 
             _context.SaveChanges();
+        }
+
+        private int GetMonthsSinceLastPayment(int tenantId)
+        {
+            // Check if payments is empty
+            if (_payments.GetAllFromTenant(tenantId).FirstOrDefault() == null)
+            {
+                return 0;
+            }
+
+            TimeSpan date = DateTime.Now - Get(tenantId).Payments.Last().Date;
+            return date.Days / 30;
+        }
+
+        private int GetMonthsSinceMovingIn(int tenantId)
+        {
+            return (int)(DateTime.Now - Get(tenantId).DateOfMovingIn).TotalDays / 30;
+        }
+
+        private int GetNumberOfTenantsInProperty(int propertyId)
+        {
+            return GetAll().Where(t => t.RentedProperty.Id == propertyId).Count();
         }
     }
 }

@@ -11,6 +11,5 @@ namespace Data
         Property Get(int id);
         IEnumerable<Property> GetAll();
         int GetNumberOfProperties();
-        int GetNumberOfTenants(int propertyId);
     }
 }

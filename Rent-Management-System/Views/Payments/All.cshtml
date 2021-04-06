@@ -3,10 +3,25 @@
 @{
     ViewData["Title"] = "Payments";
 }
-
-<ul>
-    @foreach (var payment in Model)
-    {
-        <li>@payment.Tenant.FullName - €@payment.Amount - @payment.Date</li>
-    }
-</ul>
+<div class="mb-3">
+    <h3>All Payments</h3>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">From</th>
+            <th scope="col">Amount in €</th>
+            <th scope="col">Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var payment in Model)
+        {
+            <tr>
+                <td><a asp-controller="Tenants" asp-action="Index" asp-route-id="@payment.Tenant.Id">@payment.Tenant.FullName</a></td>
+                <td>@payment.Amount</td>
+                <td>@payment.Date.ToString("dd/MM/yyyy")</td>
+            </tr>
+        }
+    </tbody>
+</table>

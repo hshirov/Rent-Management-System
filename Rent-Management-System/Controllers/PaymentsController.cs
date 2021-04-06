@@ -31,45 +31,5 @@ namespace Rent_Management_System.Controllers
         {
             return View(_payments.GetAllFromTenant(id));
         }
-
-        public IActionResult Add()
-        {
-            Payment payment = new Payment()
-            {
-                Date = DateTime.Now
-            };
-
-            AddPaymentModel model = new AddPaymentModel()
-            {
-                Payment = payment,
-                Tenants = _tenants.GetAll()
-            };
-
-            return View(model);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Add(AddPaymentModel model)
-        {
-            // The value gets set to null on redirect
-            model.Tenants = _tenants.GetAll();
-
-            if (ModelState.IsValid)
-            {
-                Payment newPayment = new Payment()
-                {
-                    Tenant = _tenants.Get(model.TenantId),
-                    Amount = model.Payment.Amount,
-                    Date = model.Payment.Date
-                };
-
-                _payments.Add(newPayment);
-
-                return RedirectToAction("All", "Payments");
-            }
-
-            return View(model);
-        }
     }
 }
