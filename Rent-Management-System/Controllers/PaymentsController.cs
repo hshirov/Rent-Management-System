@@ -1,8 +1,6 @@
 ﻿using Data;
-using Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using Rent_Management_System.Models.PaymentsModels;
-using System;
 using System.Linq;
 
 namespace Rent_Management_System.Controllers
@@ -41,6 +39,11 @@ namespace Rent_Management_System.Controllers
 
         public IActionResult Tenant(int id)
         {
+            if (!_tenants.HasPayments(id))
+            {
+                return RedirectToAction("All");
+            }
+
             PaymentListModel model = new PaymentListModel()
             {
                 Payments = _payments.GetAllFromTenant(id).Select(t => new PaymentItemModel()

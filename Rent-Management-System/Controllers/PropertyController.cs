@@ -2,6 +2,7 @@
 using Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using Rent_Management_System.Models.PropertyModels;
+using Rent_Management_System.Models.TenantModels;
 using System.Linq;
 
 namespace Rent_Management_System.Controllers
@@ -27,7 +28,15 @@ namespace Rent_Management_System.Controllers
                 Area = property.Area,
                 Rooms = property.Rooms,
                 Beds = property.Beds,
-                Tenants = _tenants.GetAllFromProperty(id)
+                Tenants = _tenants.GetAllFromProperty(id).Select(t => new TenantItemModel() 
+                {
+                    Id = t.Id,
+                    FullName = t.FullName,
+                    Address = t.RentedProperty.Address,
+                    Email = t.Email,
+                    PhoneNumber = t.PhoneNumber,
+                    DateOfMovingIn = t.DateOfMovingIn.ToString("dd/MM/yyyy")
+                })
             };
 
             return View(model);

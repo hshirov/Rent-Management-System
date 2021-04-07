@@ -16,5 +16,6 @@ namespace Data
         double GetMonthlyRent(int tenantId, int propertyId);
         double GetMoneyOwed(int tenantId);
         bool IsEmailTaken(string email);
+        bool HasPayments(int id);
     }
 }

@@ -88,6 +88,12 @@ namespace Rent_Management_System.Controllers
                     return View(model);
                 }
 
+                if (model.Tenant.DateOfMovingIn > DateTime.Now)
+                {
+                    ModelState.AddModelError("Tenant.DateOfMovingIn", "Date cannot be in the future.");
+                    return View(model);
+                }
+
                 Tenant newTenant = new Tenant()
                 {
                     FirstName = model.Tenant.FirstName,

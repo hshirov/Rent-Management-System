@@ -124,5 +124,15 @@ namespace Services
         {
             return GetAll().Where(t => t.RentedProperty.Id == propertyId).Count();
         }
+
+        public bool HasPayments(int id)
+        {
+            if(Get(id) == null || Get(id).Payments.FirstOrDefault() == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }
