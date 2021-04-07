@@ -3,11 +3,11 @@
 @{
     ViewData["Title"] = "Tenants";
 }
-<div class="mb-3">
+<div class="mb-2">
     <h3>All Tenants</h3>
 </div>
 <div class="mb-3">
-    <a  style="color: blue" asp-controller="Tenants" asp-action="Add">Add Tenant</a>
+    <a asp-controller="Tenants" asp-action="Add" class="btn btn-success btn-sm">Add Tenant</a>
 </div>
 <table class="table">
     <thead>
@@ -23,7 +23,7 @@
         @foreach (var tenant in Model.Tenants)
         {
             <tr>
-                <td><a  style="color: blue" asp-controller="Tenants" asp-action="Index" asp-route-id="@tenant.Id">@tenant.FullName</a></td>
+                <td><a asp-controller="Tenants" asp-action="Index" asp-route-id="@tenant.Id" class="tenant-name">@tenant.FullName</a></td>
                 <td>@tenant.Address</td>
                 <td>@tenant.Email</td>
                 <td>@tenant.PhoneNumber</td>

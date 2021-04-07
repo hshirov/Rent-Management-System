@@ -1,33 +1,40 @@
 ﻿@model Rent_Management_System.Models.PropertyModels.PropertyIndexModel
 
-@{ 
+@{
     ViewData["Title"] = Model.Address;
 }
 
 <div class="mb-3">
-    <h3>@Model.Address</h3>
+    <h2>@Model.Address</h2>
 </div>
-<h4>@Model.Area &#13217;</h4>
-<h5>@Model.Rooms room@(Model.Rooms > 1 ? "s" : ""), @Model.Beds bed@(Model.Beds > 1 ? "s" : "").</h5>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Phone</th>
-            <th scope="col">Date Of Moving In</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var tenant in Model.Tenants)
-        {
+<div class="mb-3 property-info">
+    <div>Area: <b>@Model.Area &#13217;</b></div>
+    <div>Rooms: <b>@Model.Rooms</b></div>
+    <div>Beds: <b>@Model.Beds</b></div>
+    <div>Monthy Rent: <b>€@Model.Rent</b></div>
+</div>
+<div class="mb-3">
+    <a asp-controller="Property" asp-action="Edit" class="btn btn-success btn-sm">Edit Property</a>
+</div>
+<h4 class="home-payments-title mb-2">Tenants</h4>
+<div class="row">
+    <table class="table col-8">
+        <thead>
             <tr>
-                <td><a style="color: blue" asp-controller="Tenants" asp-action="Index" asp-route-id="@tenant.Id">@tenant.FullName</a></td>
-                <td>@tenant.Email</td>
-                <td>@tenant.PhoneNumber</td>
-                <td>@tenant.DateOfMovingIn</td>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Date Of Moving In</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var tenant in Model.Tenants)
+            {
+                <tr>
+                    <td><a asp-controller="Tenants" asp-action="Index" asp-route-id="@tenant.Id" class="tenant-name">@tenant.FullName</a></td>
+                    <td>@tenant.Email</td>
+                    <td>@tenant.DateOfMovingIn</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

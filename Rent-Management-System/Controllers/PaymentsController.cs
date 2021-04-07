@@ -28,7 +28,7 @@ namespace Rent_Management_System.Controllers
                 Payments = _payments.GetAll().Select(t => new PaymentItemModel()
                 {
                     TenantId = t.Tenant.Id,
-                    TenantName = t.Tenant.FirstName,
+                    TenantName = t.Tenant.FullName,
                     Amount = t.Amount,
                     Date = t.Date.ToString("dd/MM/yyyy")
                 })
@@ -49,7 +49,7 @@ namespace Rent_Management_System.Controllers
                 Payments = _payments.GetAllFromTenant(id).Select(t => new PaymentItemModel()
                 {
                     TenantId = t.Tenant.Id,
-                    TenantName = t.Tenant.FirstName,
+                    TenantName = t.Tenant.FullName,
                     Amount = t.Amount,
                     Date = t.Date.ToString("dd/MM/yyyy")
                 })

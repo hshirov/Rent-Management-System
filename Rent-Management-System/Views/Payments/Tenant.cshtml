@@ -5,7 +5,7 @@
 }
 
 <div class="mb-3">
-    <h3><a style="color: blue" asp-controller="Tenants" asp-action="Index" asp-route-id="@Model.Payments.FirstOrDefault()?.TenantId">@Model.Payments.FirstOrDefault()?.TenantName</a></h3>
+    <h3><a asp-controller="Tenants" asp-action="Index" asp-route-id="@Model.Payments.FirstOrDefault()?.TenantId">@Model.Payments.FirstOrDefault()?.TenantName</a></h3>
 </div>
 <table class="table">
     <thead>

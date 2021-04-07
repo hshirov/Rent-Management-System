@@ -28,6 +28,7 @@ namespace Rent_Management_System.Controllers
                 Area = property.Area,
                 Rooms = property.Rooms,
                 Beds = property.Beds,
+                Rent = property.Rent,
                 Tenants = _tenants.GetAllFromProperty(id).Select(t => new TenantItemModel() 
                 {
                     Id = t.Id,
@@ -50,7 +51,7 @@ namespace Rent_Management_System.Controllers
                 {
                     Id = p.Id,
                     Address = p.Address,
-                    NumberOfTenants = _tenants.GetAllFromProperty(p.Id).Count()
+                    NumberOfTenants = _tenants.GetAllFromProperty(p.Id).Count()                
                 })
             };
 

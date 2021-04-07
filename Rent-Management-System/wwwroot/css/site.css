@@ -97,3 +97,12 @@ main {
     background-color: #1b6ec2;
     min-height: 100px;
 }
+
+.tenant-name {
+    font-weight: bold;
+    color: #1b6ec2;
+}
+
+.property-info{
+    font-size: 20px;
+}

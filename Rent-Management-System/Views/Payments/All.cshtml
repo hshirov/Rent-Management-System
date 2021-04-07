@@ -18,7 +18,7 @@
         @foreach (var payment in Model.Payments)
         {
             <tr>
-                <td><a style="color: blue" asp-controller="Payments" asp-action="Tenant" asp-route-id="@payment.TenantId">@payment.TenantName</a></td>
+                <td><a asp-controller="Payments" asp-action="Tenant" asp-route-id="@payment.TenantId" class="tenant-name">@payment.TenantName</a></td>
                 <td>@payment.Amount</td>
                 <td>@payment.Date</td>
             </tr>

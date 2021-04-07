@@ -4,8 +4,8 @@
     ViewData["Title"] = Model.Tenant.FirstName + " " + Model.Tenant.LastName;
 }
 
-<h2>@Model.Tenant.FirstName @Model.Tenant.LastName</h2>
-<a style="color: blue" asp-controller="Payments" asp-action="Tenant" asp-route-id="@Model.Tenant.Id">View payments</a>
+<h2>@Model.Tenant.FullName</h2>
+<a asp-controller="Payments" asp-action="Tenant" asp-route-id="@Model.Tenant.Id" class="btn btn-secondary btn-sm">View Payments</a>
 @{ if (Model.MoneyOwed > 0)
     {
         <h4>Money Owed: €@Model.MoneyOwed</h4>
@@ -17,13 +17,6 @@
     {
         <h4>Tenant is all payed up</h4>
     }
-
-    if (Model.Tenant.IsKickedOut)
-    {
-        <h1>TENANT WAS KICKED OUT</h1>
-    }
 }
 
-<form method="post">
-    <button asp-action="Remove" asp-route-id="@Model.Tenant.Id" class="btn btn-danger">Kick Out</button>
-</form>
+<a asp-action="Remove" asp-route-id="@Model.Tenant.Id" class="btn btn-danger btn-sm">Kick Out</a>

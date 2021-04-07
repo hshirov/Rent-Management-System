@@ -88,7 +88,7 @@
                 @foreach (var payment in Model.PaymentsThisMonth)
                 {
                     <div class="row recent-payment-row">
-                        <div class="col-6 tenant-name mb-2 mt-2">@payment.TenantName</div>
+                        <div class="col-6 tenant-name mb-2 mt-2"><a asp-controller="Tenants" asp-action="Index" asp-route-id="@payment.TenantId">@payment.TenantName</a></div>
                         <div class="col-6 mb-2 mt-2">+€@payment.Amount</div>
                     </div>
                 }
