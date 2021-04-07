@@ -48,3 +48,21 @@ button:focus {
     font-size: 30px;
     font-weight: 100;
 }
+
+.rent-info{
+    font-size: 35px;
+    color: #a0a0a0;
+}
+
+.home-payments-title {
+    font-size: 25px;
+    color: #a0a0a0;
+}
+
+.recent-payment-container{
+    width: 40%;
+}
+
+.tenant-name{
+    font-weight: bold;
+}

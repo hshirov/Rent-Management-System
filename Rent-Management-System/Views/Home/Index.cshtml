@@ -76,4 +76,23 @@
             </a>
         </div>
     </div>
+    <div class="mt-4">
+        <div class="row">
+            <div class="col-xl-5 col-lg-6">
+                <h3 class="rent-info">Rent collected as of @Model.CurrentMonth: €@Model.RentCollectedThisMonth</h3>
+            </div>
+        </div>
+        <div class="mt-4 recent-payment-container">
+            <h5 class="home-payments-title">Recent Payments</h5>
+            <div>
+                @foreach (var payment in Model.PaymentsThisMonth)
+                {
+                    <div class="row recent-payment-row">
+                        <div class="col-6 tenant-name mb-2 mt-2">@payment.TenantName</div>
+                        <div class="col-6 mb-2 mt-2">+€@payment.Amount</div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
 </div>

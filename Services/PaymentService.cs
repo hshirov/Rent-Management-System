@@ -36,6 +36,19 @@ namespace Services
             return GetAll().Where(p => p.Tenant.Id == tenantId);
         }
 
+        public double GetAmountFromMonth(int month)
+        {
+            var payments = GetAll().Where(p => p.Date.Month == month);
+            double sum = 0;
+
+            foreach(var payment in payments)
+            {
+                sum += payment.Amount;
+            }
+
+            return sum;
+        }
+
         public double GetPaymentSum(int tenantId)
         {
             double sum = 0;
@@ -46,6 +59,11 @@ namespace Services
             }
 
             return sum;
+        }
+
+        public IEnumerable<Payment> GetAllFromMonth(int month)
+        {
+            return GetAll().Where(p => p.Date.Month == month);
         }
     }
 }
