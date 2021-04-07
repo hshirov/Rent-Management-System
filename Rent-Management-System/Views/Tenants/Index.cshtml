@@ -5,7 +5,7 @@
 }
 
 <h2>@Model.Tenant.FirstName @Model.Tenant.LastName</h2>
-<a asp-controller="Payments" asp-action="Tenant" asp-route-id="@Model.Tenant.Id">View payments</a>
+<a style="color: blue" asp-controller="Payments" asp-action="Tenant" asp-route-id="@Model.Tenant.Id">View payments</a>
 @{ if (Model.MoneyOwed > 0)
     {
         <h4>Money Owed: €@Model.MoneyOwed</h4>

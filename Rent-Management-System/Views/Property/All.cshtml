@@ -5,14 +5,14 @@
 }
 
 <div class="mb-3">
-    <a asp-controller="Property" asp-action="Add">Add Property</a>
+    <a style="color: blue" asp-controller="Property" asp-action="Add">Add Property</a>
 </div>
 <div>
     <div class="row">
         @foreach (var property in Model.Properties)
         {           
             <div class="col-xl-3 col-lg-6 col-sm-12">
-                <a asp-controller="Property" asp-action="Index" asp-route-id="@property.Id">
+                <a style="color: blue" asp-controller="Property" asp-action="Index" asp-route-id="@property.Id">
                     <div class="menu-item property-list-item">
                         <div class="row">
                             <div class="item-title col">

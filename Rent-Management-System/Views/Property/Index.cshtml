@@ -23,7 +23,7 @@
         @foreach (var tenant in Model.Tenants)
         {
             <tr>
-                <td><a asp-controller="Tenants" asp-action="Index" asp-route-id="@tenant.Id">@tenant.FullName</a></td>
+                <td><a style="color: blue" asp-controller="Tenants" asp-action="Index" asp-route-id="@tenant.Id">@tenant.FullName</a></td>
                 <td>@tenant.Email</td>
                 <td>@tenant.PhoneNumber</td>
                 <td>@tenant.DateOfMovingIn</td>
