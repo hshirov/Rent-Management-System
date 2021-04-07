@@ -1,9 +1,10 @@
 ﻿using Data;
 using Data.Models;
 using Microsoft.AspNetCore.Mvc;
-using Rent_Management_System.Models;
+using Rent_Management_System.Models.TenantModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Rent_Management_System.Controllers
 {
@@ -26,7 +27,7 @@ namespace Rent_Management_System.Controllers
            
             if(tenant != null)
             {
-                TenantIndexView model = new TenantIndexView()
+                TenantIndexModel model = new TenantIndexModel()
                 {
                     Tenant = tenant,
                     MoneyOwed = _tenants.GetMoneyOwed(tenant.Id)
@@ -40,9 +41,20 @@ namespace Rent_Management_System.Controllers
 
         public IActionResult All()
         {
-            IEnumerable<Tenant> tenants = _tenants.GetAll();
+            TenantListModel model = new TenantListModel()
+            {
+                Tenants = _tenants.GetAll().Select(t => new TenantItemModel()
+                {
+                    Id = t.Id,
+                    FullName = t.FullName,
+                    Address = t.RentedProperty.Address,
+                    Email = t.Email,
+                    PhoneNumber = t.PhoneNumber,
+                    DateOfMovingIn = t.DateOfMovingIn.ToString("dd/MM/yyyy")
+                })
+            };
 
-            return View(tenants);
+            return View(model);
         }
 
         public IActionResult Add()

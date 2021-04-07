@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Data.Models.Payment>
+﻿@model Rent_Management_System.Models.PaymentsModels.PaymentListModel
 
 @{
     ViewData["Title"] = "Payments";
@@ -15,12 +15,12 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var payment in Model)
+        @foreach (var payment in Model.Payments)
         {
             <tr>
-                <td><a asp-controller="Tenants" asp-action="Index" asp-route-id="@payment.Tenant.Id">@payment.Tenant.FullName</a></td>
+                <td><a asp-controller="Payments" asp-action="Tenant" asp-route-id="@payment.TenantId">@payment.TenantName</a></td>
                 <td>@payment.Amount</td>
-                <td>@payment.Date.ToString("dd/MM/yyyy")</td>
+                <td>@payment.Date</td>
             </tr>
         }
     </tbody>

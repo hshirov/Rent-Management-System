@@ -39,13 +39,14 @@ namespace Services
         public IEnumerable<Tenant> GetAll()
         {
             return _context.Tenants
+                .Where(t => t.IsKickedOut == false)
                 .Include(t => t.RentedProperty)
                 .Include(t => t.Payments);
         }
 
         public IEnumerable<Tenant> GetAllFromProperty(int propertyId)
         {
-            return GetAll().Where(t => t.RentedProperty.Id == propertyId);
+            return GetAll().Where(t => t.RentedProperty.Id == propertyId && !t.IsKickedOut);
         }
 
         public double GetMoneyOwed(int tenantId)
@@ -76,7 +77,7 @@ namespace Services
 
         public int GetNumberOfTenants()
         {
-            return _context.Tenants.Count();
+            return _context.Tenants.Where(t => !t.IsKickedOut).Count();
         }
 
         public bool IsEmailTaken(string email)
@@ -119,7 +120,7 @@ namespace Services
             return (int)(DateTime.Now - Get(tenantId).DateOfMovingIn).TotalDays / 30;
         }
 
-        private int GetNumberOfTenantsInProperty(int propertyId)
+        public int GetNumberOfTenantsInProperty(int propertyId)
         {
             return GetAll().Where(t => t.RentedProperty.Id == propertyId).Count();
         }

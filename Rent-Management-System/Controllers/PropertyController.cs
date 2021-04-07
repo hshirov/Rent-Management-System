@@ -1,30 +1,51 @@
 ﻿using Data;
 using Data.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+using Rent_Management_System.Models.PropertyModels;
+using System.Linq;
 
 namespace Rent_Management_System.Controllers
 {
     public class PropertyController : Controller
     {
         private readonly IProperty _properties;
+        private readonly ITenant _tenants;
 
-        public PropertyController(IProperty properties)
+        public PropertyController(IProperty properties, ITenant tenants)
         {
             _properties = properties;
+            _tenants = tenants;
         }
 
         public IActionResult Index(int id)
         {
-            Property model = _properties.Get(id);
+            Property property = _properties.Get(id);
+
+            PropertyIndexModel model = new PropertyIndexModel()
+            {
+                Address = property.Address,
+                Area = property.Area,
+                Rooms = property.Rooms,
+                Beds = property.Beds,
+                Tenants = _tenants.GetAllFromProperty(id)
+            };
 
             return View(model);
         }
 
         public IActionResult All()
         {
-            IEnumerable<Property> properties = _properties.GetAll();
-            return View(properties);
+            PropertyListModel model = new PropertyListModel()
+            {
+                Properties = _properties.GetAll().Select(p => new PropertyItemModel
+                {
+                    Id = p.Id,
+                    Address = p.Address,
+                    NumberOfTenants = _tenants.GetAllFromProperty(p.Id).Count()
+                })
+            };
+
+            return View(model);
         }
 
         public IActionResult Add()

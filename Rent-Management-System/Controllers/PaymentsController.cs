@@ -1,8 +1,9 @@
 ﻿using Data;
 using Data.Models;
 using Microsoft.AspNetCore.Mvc;
-using Rent_Management_System.Models;
+using Rent_Management_System.Models.PaymentsModels;
 using System;
+using System.Linq;
 
 namespace Rent_Management_System.Controllers
 {
@@ -24,12 +25,34 @@ namespace Rent_Management_System.Controllers
 
         public IActionResult All()
         {
-            return View(_payments.GetAll());
+            PaymentListModel model = new PaymentListModel()
+            {
+                Payments = _payments.GetAll().Select(t => new PaymentItemModel()
+                {
+                    TenantId = t.Tenant.Id,
+                    TenantName = t.Tenant.FirstName,
+                    Amount = t.Amount,
+                    Date = t.Date.ToString("dd/MM/yyyy")
+                })
+            };
+
+            return View(model);
         }
 
         public IActionResult Tenant(int id)
         {
-            return View(_payments.GetAllFromTenant(id));
+            PaymentListModel model = new PaymentListModel()
+            {
+                Payments = _payments.GetAllFromTenant(id).Select(t => new PaymentItemModel()
+                {
+                    TenantId = t.Tenant.Id,
+                    TenantName = t.Tenant.FirstName,
+                    Amount = t.Amount,
+                    Date = t.Date.ToString("dd/MM/yyyy")
+                })
+            };
+
+            return View(model);
         }
     }
 }

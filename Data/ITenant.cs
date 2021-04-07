@@ -12,6 +12,7 @@ namespace Data
         IEnumerable<Tenant> GetAll();
         IEnumerable<Tenant> GetAllFromProperty(int propertyId);
         int GetNumberOfTenants();
+        int GetNumberOfTenantsInProperty(int propertyId);
         double GetMonthlyRent(int tenantId, int propertyId);
         double GetMoneyOwed(int tenantId);
         bool IsEmailTaken(string email);

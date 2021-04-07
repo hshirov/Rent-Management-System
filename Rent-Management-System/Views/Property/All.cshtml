@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Data.Models.Property>
+﻿@model Rent_Management_System.Models.PropertyModels.PropertyListModel
 
 @{
     ViewData["Title"] = "Property";
@@ -9,7 +9,7 @@
 </div>
 <div>
     <div class="row">
-        @foreach (var property in Model)
+        @foreach (var property in Model.Properties)
         {           
             <div class="col-xl-3 col-lg-6 col-sm-12">
                 <a asp-controller="Property" asp-action="Index" asp-route-id="@property.Id">
@@ -17,7 +17,7 @@
                         <div class="row">
                             <div class="item-title col">
                                 @property.Address <br />
-                                <p class="secondary-text">@property.Tenants.Count() Tenants</p>
+                                <p class="secondary-text">@property.NumberOfTenants Tenants</p>
                             </div>
                         </div>
                     </div>

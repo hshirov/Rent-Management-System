@@ -1,7 +1,7 @@
 ﻿using Data.Models;
 using System.Collections.Generic;
 
-namespace Rent_Management_System.Models
+namespace Rent_Management_System.Models.TenantModels
 {
     public class AddTenantModel
     {

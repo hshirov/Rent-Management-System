@@ -1,11 +1,11 @@
-﻿@model IEnumerable<Data.Models.Payment>
+﻿@model Rent_Management_System.Models.PaymentsModels.PaymentListModel
 
 @{
     ViewData["Title"] = "Payments";
 }
 
 <div class="mb-3">
-    <h3>@Model.FirstOrDefault().Tenant.FullName</h3>
+    <h3><a asp-controller="Tenants" asp-action="Index" asp-route-id="@Model.Payments.FirstOrDefault().TenantId">@Model.Payments.FirstOrDefault().TenantName</a></h3>
 </div>
 <table class="table">
     <thead>
@@ -15,11 +15,11 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var payment in Model)
+        @foreach (var payment in Model.Payments)
         {
             <tr>
                 <td>@payment.Amount</td>
-                <td>@payment.Date.ToString("dd/MM/yyyy")</td>
+                <td>@payment.Date</td>
             </tr>
         }
     </tbody>
