@@ -58,7 +58,7 @@ namespace Services
             int factor = GetMonthsSinceMovingIn(tenantId);
 
             // If the tenent has no previous payments, get the date of moving in
-            if (_payments.GetAllFromTenant(tenantId).FirstOrDefault() != null)
+            if (HasPayments(tenantId))
             {
                 factor = GetMonthsSinceLastPayment(tenantId);
             }
@@ -74,6 +74,21 @@ namespace Services
         public bool IsEmailTaken(string email)
         {
             return GetAll().Any(t => t.Email == email);
+        }
+
+        public int GetNumberOfTenantsInProperty(int propertyId)
+        {
+            return GetAll().Where(t => t.RentedProperty.Id == propertyId).Count();
+        }
+
+        public bool HasPayments(int tenantId)
+        {
+            if (Get(tenantId) == null || _payments.GetAllFromTenant(tenantId).FirstOrDefault() == null)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public void KickOut(int id)
@@ -92,21 +107,6 @@ namespace Services
             _context.Entry(entityToUpdate).CurrentValues.SetValues(tenant);
 
             _context.SaveChanges();
-        }
-
-        public int GetNumberOfTenantsInProperty(int propertyId)
-        {
-            return GetAll().Where(t => t.RentedProperty.Id == propertyId).Count();
-        }
-
-        public bool HasPayments(int id)
-        {
-            if (Get(id) == null || Get(id).Payments.FirstOrDefault() == null)
-            {
-                return false;
-            }
-
-            return true;
         }
 
         private int GetMonthsSinceLastPayment(int tenantId)

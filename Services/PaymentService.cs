@@ -38,7 +38,7 @@ namespace Services
 
         public double GetAmountFromMonth(int month)
         {
-            var payments = GetAll().Where(p => p.Date.Month == month);
+            IEnumerable<Payment> payments = GetAllFromMonth(month);
             double sum = 0;
 
             foreach(var payment in payments)
