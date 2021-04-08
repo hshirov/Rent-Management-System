@@ -127,5 +127,22 @@ namespace UnitTests.Services.Tests
 
             Assert.That(payments, Is.Not.Null);
         }
+
+        [Test]
+        public void GetAmountFromYear_Not_Null()
+        {
+            int year = DateTime.Now.Year;
+            double sum = paymentService.GetAmountFromYear(year);
+
+            Assert.That(sum, Is.Not.Null);
+        }
+
+        [Test]
+        public void GetAmountFromAllTime_Not_Null()
+        {
+            double sum = paymentService.GetAmountFromAllTime();
+
+            Assert.That(sum, Is.Not.Null);
+        }
     }
 }

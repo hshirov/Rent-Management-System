@@ -1,0 +1,13 @@
+﻿@model Rent_Management_System.Models.RentCollectedIndexModel
+
+@{ 
+    ViewData["Title"] = "Rent Collected";
+} 
+
+<h1>Rent Collected</h1>
+<hr />
+<div class="rent-collected-info">
+    <div>As of this month: <b>€@Model.MonthlyProfits</b></div>
+    <div>As of this year: <b>€@Model.YearlyProfits</b></div>
+    <div>All time profits: <b>€@Model.AllTimeProfits</b></div>
+</div>

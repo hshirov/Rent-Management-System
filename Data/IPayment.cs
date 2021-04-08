@@ -12,5 +12,7 @@ namespace Data
         IEnumerable<Payment> GetAllFromMonth(int month);
         double GetPaymentSum(int tenantId);
         double GetAmountFromMonth(int month);
+        double GetAmountFromYear(int year);
+        double GetAmountFromAllTime();
     }
 }
