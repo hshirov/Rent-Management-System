@@ -29,7 +29,6 @@ namespace Rent_Management_System.Controllers
                 PropertyCount = _properties.GetNumberOfProperties(),
                 TenantCount = _tenants.GetNumberOfTenants(),
                 RentCollectedThisMonth = _payments.GetAmountFromMonth(month),
-                CurrentMonth = DateTime.Now.ToString("MMMM"),
                 PaymentsThisMonth = _payments.GetAllFromMonth(month).Select(p => new PaymentItemModel() 
                 {
                     TenantId = p.Tenant.Id,

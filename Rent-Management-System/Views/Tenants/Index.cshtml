@@ -1,22 +1,32 @@
 ﻿@model Rent_Management_System.Models.TenantModels.TenantIndexModel
 
 @{
-    ViewData["Title"] = Model.Tenant.FirstName + " " + Model.Tenant.LastName;
+    ViewData["Title"] = Model.TenantName;
 }
-
-<h2>@Model.Tenant.FullName</h2>
-<a asp-controller="Payments" asp-action="Tenant" asp-route-id="@Model.Tenant.Id" class="btn btn-secondary btn-sm">View Payments</a>
-@{ if (Model.MoneyOwed > 0)
-    {
-        <h4>Money Owed: €@Model.MoneyOwed</h4>
-        <form method="post">
-            <button asp-action="PayRent" asp-route-id="@Model.Tenant.Id" class="btn btn-info">Mark as paid</button>
-        </form>
-    }
-    else
-    {
-        <h4>Tenant is all payed up</h4>
-    }
-}
-
-<a asp-action="Remove" asp-route-id="@Model.Tenant.Id" class="btn btn-danger btn-sm">Kick Out</a>
+<div class="jumbotron">
+    <div class="tenant-top-info mb-3">
+        <h1>@Model.TenantName</h1>
+        <h2 class="home-payments-title">@Model.TenantAddress</h2>
+        <h2 class="home-payments-title">Moved in on @Model.DateOfMovingIn</h2>
+        <div class="tenant-info">Email: @Model.Email</div>
+        <div class="tenant-info">Phone: @Model.PhoneNumber</div>
+        <a asp-controller="Payments" asp-action="Tenant" asp-route-id="@Model.TenantId" class="btn btn-secondary btn-sm mt-2">View Payments</a>
+    </div>
+    <div class="pt-2">
+        @{ if (Model.MoneyOwed > 0)
+            {
+                <h3>Money Owed: <b>€@Model.MoneyOwed</b></h3>
+                <form method="post">
+                    <button asp-action="PayRent" asp-route-id="@Model.TenantId" class="btn btn-success">Mark As Paid</button>
+                </form>
+            }
+            else
+            {
+                <h3 class="paid-up-title">Tenant is all paid-up.</h3>
+            }
+        }
+    </div>
+</div>
+<form method="post">
+    <button asp-action="Remove" asp-route-id="@Model.TenantId" class="btn btn-danger btn-sm">Kick Tenant Out</button>
+</form>

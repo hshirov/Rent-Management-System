@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Services.Common;
 
 namespace Services
 {
@@ -22,9 +23,12 @@ namespace Services
 
         public void Add(Tenant tenant, int rentedPropertyId)
         {
+            tenant.FirstName = StringManipulation.NormalizeName(tenant.FirstName);
+            tenant.LastName = StringManipulation.NormalizeName(tenant.LastName);
             tenant.FullName = tenant.FirstName + " " + tenant.LastName;
+
             tenant.RentedProperty = _properties.Get(rentedPropertyId);
-            tenant.MonthlyRent = GetMonthlyRent(tenant.Id, rentedPropertyId);
+            tenant.MonthlyRent = CalculateMonthlyRent(tenant.Id, rentedPropertyId);
             tenant.IsKickedOut = false;
 
             _context.Add(tenant);
@@ -59,20 +63,7 @@ namespace Services
                 factor = GetMonthsSinceLastPayment(tenantId);
             }
 
-            return GetMonthlyRent(tenantId, Get(tenantId).RentedProperty.Id) * factor;
-        }
-
-        public double GetMonthlyRent(int tenantId, int propertyId)
-        {
-            // Split the rent equally between tenants
-            int numberOfTenants = GetNumberOfTenantsInProperty(propertyId);
-
-            if(numberOfTenants > 0)
-            {
-                return _properties.Get(propertyId).Rent / numberOfTenants;
-            }
-
-            return _properties.Get(propertyId).Rent;
+            return Get(tenantId).MonthlyRent * factor;
         }
 
         public int GetNumberOfTenants()
@@ -103,6 +94,21 @@ namespace Services
             _context.SaveChanges();
         }
 
+        public int GetNumberOfTenantsInProperty(int propertyId)
+        {
+            return GetAll().Where(t => t.RentedProperty.Id == propertyId).Count();
+        }
+
+        public bool HasPayments(int id)
+        {
+            if (Get(id) == null || Get(id).Payments.FirstOrDefault() == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         private int GetMonthsSinceLastPayment(int tenantId)
         {
             // Check if payments is empty
@@ -120,19 +126,17 @@ namespace Services
             return (int)(DateTime.Now - Get(tenantId).DateOfMovingIn).TotalDays / 30;
         }
 
-        public int GetNumberOfTenantsInProperty(int propertyId)
+        private double CalculateMonthlyRent(int tenantId, int propertyId)
         {
-            return GetAll().Where(t => t.RentedProperty.Id == propertyId).Count();
-        }
+            // Split the rent equally between tenants
+            int numberOfTenants = GetNumberOfTenantsInProperty(propertyId) + 1;
 
-        public bool HasPayments(int id)
-        {
-            if(Get(id) == null || Get(id).Payments.FirstOrDefault() == null)
+            if (numberOfTenants > 0)
             {
-                return false;
+                return _properties.Get(propertyId).Rent / numberOfTenants;
             }
 
-            return true;
+            return _properties.Get(propertyId).Rent;
         }
     }
 }

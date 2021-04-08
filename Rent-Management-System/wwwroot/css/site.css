@@ -106,3 +106,16 @@ main {
 .property-info{
     font-size: 20px;
 }
+
+.tenant-info{
+    font-size: 20px;
+}
+
+.tenant-top-info {
+    border-bottom: 1px solid #a0a0a0;
+    padding-bottom: 20px;
+}
+
+.paid-up-title {
+    font-size: 30px;
+}

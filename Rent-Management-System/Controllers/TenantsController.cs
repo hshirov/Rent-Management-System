@@ -3,7 +3,6 @@ using Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using Rent_Management_System.Models.TenantModels;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Rent_Management_System.Controllers
@@ -29,7 +28,12 @@ namespace Rent_Management_System.Controllers
             {
                 TenantIndexModel model = new TenantIndexModel()
                 {
-                    Tenant = tenant,
+                    TenantId = tenant.Id,
+                    TenantName = tenant.FullName,
+                    TenantAddress = tenant.RentedProperty.Address,
+                    DateOfMovingIn = tenant.DateOfMovingIn.Date.ToString("dd/MM/yyyy"),
+                    Email = tenant.Email,
+                    PhoneNumber = tenant.PhoneNumber,
                     MoneyOwed = _tenants.GetMoneyOwed(tenant.Id)
                 };
 

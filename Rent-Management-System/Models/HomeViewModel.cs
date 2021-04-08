@@ -6,7 +6,6 @@ namespace Rent_Management_System.Models
     {
         public int TenantCount { get; set; }
         public int PropertyCount { get; set; }
-        public string CurrentMonth { get; set; }
         public double RentCollectedThisMonth { get; set; }
         public IEnumerable<PaymentsModels.PaymentItemModel> PaymentsThisMonth { get; set; }
     }
