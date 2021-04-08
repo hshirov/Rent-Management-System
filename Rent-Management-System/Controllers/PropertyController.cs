@@ -24,6 +24,7 @@ namespace Rent_Management_System.Controllers
 
             PropertyIndexModel model = new PropertyIndexModel()
             {
+                Id = property.Id,
                 Address = property.Address,
                 Area = property.Area,
                 Rooms = property.Rooms,
@@ -68,6 +69,22 @@ namespace Rent_Management_System.Controllers
             };       
 
             return View(model);
+        }
+
+        public IActionResult Edit(int id)
+        {
+            Property model = _properties.Get(id);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Property property)
+        {
+            _properties.Update(property);
+
+            return RedirectToAction("Index", new { id = property.Id });
         }
 
         [HttpPost]

@@ -24,5 +24,9 @@
                 </a>
             </div>
         }
+        @if(Model.Properties.Count() == 0)
+        {
+            <h3 class="mt-2 ml-2">You don't have any properties yet.</h3>
+        }
     </div>
 </div>

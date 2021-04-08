@@ -14,7 +14,7 @@
     <div>Monthy Rent: <b>€@Model.Rent</b></div>
 </div>
 <div class="mb-4">
-    <a asp-controller="Property" asp-action="Edit" class="btn btn-success btn-sm">Edit Property</a>
+    <a asp-controller="Property" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success btn-sm">Edit Property</a>
 </div>
 <h4 class="home-payments-title mb-2">Tenants</h4>
 <div class="row">

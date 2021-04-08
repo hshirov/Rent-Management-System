@@ -79,7 +79,9 @@
     </div>
     <div class="mt-4">
         <div class="mt-4 recent-payment-container">
-            <h5 class="home-payments-title">Recent Payments</h5>
+            @if(Model.PaymentsThisMonth.Count() > 0) {
+                <h5 class="home-payments-title">Recent Payments</h5>
+            }
             <div>
                 @foreach (var payment in Model.PaymentsThisMonth)
                 {
