@@ -8,6 +8,7 @@ namespace Services
 {
     /// <summary>
     /// Payment Service class
+    /// Manages the actions for the Payments
     /// </summary>
     public class PaymentService : IPayment
     {
@@ -21,7 +22,8 @@ namespace Services
             _context = context;
         }
         /// <summary>
-        /// Add function - Adds a new Payment
+        /// Add function
+        /// Adds a new Payment to the Database
         /// </summary>
         /// <param name="payment"></param>
         public void Add(Payment payment)
@@ -50,7 +52,7 @@ namespace Services
         /// GetAllFromTenant Function
         /// </summary>
         /// <param name="tenantId"></param>
-        /// <returns>All of the Payments of the specified tenant via ID</returns>
+        /// <returns>All the Payments of the specified tenant via ID</returns>
         public IEnumerable<Payment> GetAllFromTenant(int tenantId)
         {
             return GetAll().Where(p => p.Tenant.Id == tenantId);

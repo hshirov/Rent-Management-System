@@ -1,11 +1,11 @@
-﻿@model Rent_Management_System.Models.PaymentsModels.PaymentListModel
+﻿@model Rent_Management_System.Models.PaymentsModels.PaymentsFromTenantListModel
 
 @{
     ViewData["Title"] = "Payments";
 }
 
 <div class="mb-3">
-    <h3 class="tenant-name"><a asp-controller="Tenants" asp-action="Index" asp-route-id="@Model.Payments.FirstOrDefault()?.TenantId">@Model.Payments.FirstOrDefault()?.TenantName</a></h3>
+    <h3>All payments from <a asp-controller="Tenants" asp-action="Index" asp-route-id="@Model.TenantId" class="tenant-name">@Model.TenantName</a></h3>
 </div>
 <table class="table">
     <thead>
