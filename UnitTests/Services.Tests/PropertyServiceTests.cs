@@ -55,5 +55,13 @@ namespace UnitTests.Services.Tests
             Assert.That(property, Is.Not.Null);
         }
 
+        [Test]
+        public void GetNumberOfProperties_Returns_Correct_Value()
+        {
+            int expectedCount = properties.Count;
+            int count = propertyService.GetNumberOfProperties();
+
+            Assert.That(count == expectedCount);
+        }
     }
 }

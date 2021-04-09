@@ -107,11 +107,12 @@ namespace UnitTests.Services.Tests
         }
 
         [Test]
-        public void GetNumberOfTenants_Not_Null()
+        public void GetNumberOfTenants_Correct_Count()
         {
+            int expectedCount = tenants.Count;
             int count = tenantService.GetNumberOfTenants();
 
-            Assert.That(count, Is.Not.Null);
+            Assert.That(expectedCount == count);
         }
 
         [Test]

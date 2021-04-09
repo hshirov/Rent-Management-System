@@ -103,5 +103,16 @@ namespace UnitTests.Controller.Tests
 
             Assert.That(result, Is.Not.Null);
         }
+
+        [Test]
+        public void Edit_Not_Null()
+        {
+            int tenantId = 1;
+            TenantsController controller = new TenantsController(propertyService, tenantService, paymentService);
+
+            ViewResult result = controller.Edit(tenantId) as ViewResult;
+
+            Assert.That(result, Is.Not.Null);
+        }
     }
 }

@@ -103,5 +103,16 @@ namespace UnitTests.Controller.Tests
 
             Assert.That(result, Is.Not.Null);
         }
+
+        [Test]
+        public void Edit_Not_Null()
+        {
+            int propertyId = 1;
+            PropertyController controller = new PropertyController(propertyService, tenantService);
+
+            ViewResult result = controller.Edit(propertyId) as ViewResult;
+
+            Assert.That(result, Is.Not.Null);
+        }
     }
 }

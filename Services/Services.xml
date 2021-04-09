@@ -6,15 +6,15 @@
     <members>
         <member name="T:Services.Common.StringManipulation">
             <summary>
-            String Manipulation class
+            String Manipulation
             </summary>
         </member>
         <member name="M:Services.Common.StringManipulation.NormalizeName(System.String)">
             <summary>
-            Normalize Name Function
+            Capitalize the first letter in a string and make the rest lowercase
             </summary>
             <param name="name"></param>
-            <returns>The specified string with the first character capitalized</returns>
+            <returns></returns>
         </member>
         <member name="T:Services.PaymentService">
             <summary>
