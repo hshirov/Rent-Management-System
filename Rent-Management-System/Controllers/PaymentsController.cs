@@ -44,7 +44,7 @@ namespace Rent_Management_System.Controllers
                 return RedirectToAction("All");
             }
 
-            PaymentListModel model = new PaymentListModel()
+            PaymentsFromTenantListModel model = new PaymentsFromTenantListModel()
             {
                 Payments = _payments.GetAllFromTenant(id).Select(t => new PaymentItemModel()
                 {
@@ -52,7 +52,9 @@ namespace Rent_Management_System.Controllers
                     TenantName = t.Tenant.FullName,
                     Amount = t.Amount,
                     Date = t.Date.ToString("dd/MM/yyyy")
-                })
+                }),
+                TenantId = id,
+                TenantName = _tenants.Get(id).FullName
             };
 
             return View(model);

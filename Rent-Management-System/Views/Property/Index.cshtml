@@ -24,6 +24,7 @@
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Date Of Moving In</th>
+                <th scope="col">Debt</th>
             </tr>
         </thead>
         <tbody>
@@ -33,6 +34,7 @@
                     <td><a asp-controller="Tenants" asp-action="Index" asp-route-id="@tenant.Id" class="tenant-name">@tenant.FullName</a></td>
                     <td>@tenant.Email</td>
                     <td>@tenant.DateOfMovingIn</td>
+                    <td><b>€@tenant.Debt</b></td>
                 </tr>
             }
         </tbody>

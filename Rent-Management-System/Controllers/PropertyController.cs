@@ -37,7 +37,8 @@ namespace Rent_Management_System.Controllers
                     Address = t.RentedProperty.Address,
                     Email = t.Email,
                     PhoneNumber = t.PhoneNumber,
-                    DateOfMovingIn = t.DateOfMovingIn.ToString("dd/MM/yyyy")
+                    DateOfMovingIn = t.DateOfMovingIn.ToString("dd/MM/yyyy"),
+                    Debt = _tenants.GetMoneyOwed(t.Id)
                 })
             };
 

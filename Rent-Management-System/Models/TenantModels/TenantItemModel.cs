@@ -8,5 +8,6 @@
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public string DateOfMovingIn { get; set; }
+        public double Debt { get; set; }
     }
 }
