@@ -7,22 +7,22 @@ using System.Linq;
 namespace Services
 {
     /// <summary>
-    /// Payment Service class
-    /// Manages the actions for the Payments
+    /// Handles the payment business logic
     /// </summary>
     public class PaymentService : IPayment
     {
         private RmsContext _context;
+
         /// <summary>
-        /// Constuctor for the class Payment Service
+        /// Constuctor for the Payment Service
         /// </summary>
         /// <param name="context"></param>
         public PaymentService(RmsContext context)
         {
             _context = context;
         }
+
         /// <summary>
-        /// Add function
         /// Adds a new Payment to the Database
         /// </summary>
         /// <param name="payment"></param>
@@ -31,37 +31,41 @@ namespace Services
             _context.Add(payment);
             _context.SaveChanges();
         }
+
         /// <summary>
-        /// Get Function
+        /// Returns a single payment, specified by id
         /// </summary>
         /// <param name="id"></param>
-        /// <returns>The specified Payment via ID</returns>
+        /// <returns></returns>
         public Payment Get(int id)
         {
             return GetAll().FirstOrDefault(p => p.Id == id);
         }
+
         /// <summary>
-        /// GetAll Function
+        /// Returns all payment records ordered by date in descending order
         /// </summary>
         /// <returns>All the Payments</returns>
         public IEnumerable<Payment> GetAll()
         {
             return _context.Payments.Include(p => p.Tenant).OrderByDescending(p => p.Date);
         }
+
         /// <summary>
-        /// GetAllFromTenant Function
+        /// All payments from a specific tenant
         /// </summary>
         /// <param name="tenantId"></param>
-        /// <returns>All the Payments of the specified tenant via ID</returns>
+        /// <returns></returns>
         public IEnumerable<Payment> GetAllFromTenant(int tenantId)
         {
             return GetAll().Where(p => p.Tenant.Id == tenantId);
         }
+
         /// <summary>
-        /// GetPaymentSum
+        /// Get the sum of all payments made by a specific tenant
         /// </summary>
         /// <param name="tenantId"></param>
-        /// <returns>Sum of all the Payments</returns>
+        /// <returns></returns>
         public double GetPaymentSum(int tenantId)
         {
             double sum = 0;
@@ -73,52 +77,57 @@ namespace Services
 
             return sum;
         }
+
         /// <summary>
-        /// GetAllFromMonth Function
+        /// Get all payments made on a specific month
         /// </summary>
         /// <param name="month"></param>
-        /// <returns>The number of all the Payments from the last month</returns>
+        /// <returns></returns>
         public IEnumerable<Payment> GetAllFromMonth(int month)
         {
             return GetAll().Where(p => p.Date.Month == month);
         }
+
         /// <summary>
-        /// GetAmountFromMonth Function
+        /// Get sum of payments made on a specific month
         /// </summary>
         /// <param name="month"></param>
-        /// <returns>Specified Payment from the last month</returns>
+        /// <returns></returns>
         public double GetAmountFromMonth(int month)
         {
             IEnumerable<Payment> payments = GetAllFromMonth(month);
 
             return GetPaymentsAmount(payments);
         }
+
         /// <summary>
-        /// GetAmountFromYear Function
+        /// Get sum of payments made from a specific year
         /// </summary>
         /// <param name="year"></param>
-        /// <returns>The Number of all the Payments from the last year</returns>
+        /// <returns></returns>
         public double GetAmountFromYear(int year)
         {
             IEnumerable<Payment> payments = GetAll().Where(p => p.Date.Year == year);
 
             return GetPaymentsAmount(payments);
         }
+
         /// <summary>
-        /// GetAmountFromAllTime
+        /// Get the sum of all payments, regardless of the date
         /// </summary>
-        /// <returns>All the Payments since the beginning</returns>
+        /// <returns></returns>
         public double GetAmountFromAllTime()
         {
             IEnumerable<Payment> payments = GetAll();
 
             return GetPaymentsAmount(payments);
         }
+
         /// <summary>
-        /// GetPaymentsAmount
+        /// Get the sum of money from a list of payments
         /// </summary>
         /// <param name="payments"></param>
-        /// <returns>The number of Payments</returns>
+        /// <returns></returns>
         private double GetPaymentsAmount(IEnumerable<Payment> payments)
         {
             double sum = 0;

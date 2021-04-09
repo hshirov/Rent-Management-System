@@ -7,23 +7,23 @@ using System.Linq;
 namespace Services
 {
     /// <summary>
-    /// The PropertyService Class
-    /// Manages the actions for the Properties
+    /// Handles the property business logic
     /// </summary>
     public class PropertyService : IProperty
     {
         private RmsContext _context;
+
         /// <summary>
-        /// Constuctor for the class Property Service
+        /// Constuctor for the Property Service
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">Database context</param>
         public PropertyService(RmsContext context)
         {
             _context = context;
         }
+
         /// <summary>
-        /// The Add Function
-        ///  Adds a new property to the Database
+        /// Adds a new property to the Database
         /// </summary>
         /// <param name="property"></param>
         public void Add(Property property)
@@ -31,44 +31,37 @@ namespace Services
             _context.Add(property);
             _context.SaveChanges();
         }
+
         /// <summary>
-        /// The Get Function
+        /// Returns a single property, specified by id
         /// </summary>
         /// <param name="id"></param>
-        /// <returns>The specified Property via ID</returns>
+        /// <returns>A property matching the id or null if none matches</returns>
         public Property Get(int id)
         {
             return GetAll().FirstOrDefault(p => p.Id == id);
         }
+
         /// <summary>
-        /// The GetAll Function
+        /// Returns all property records
         /// </summary>
-        /// <returns>All the Properties</returns>
+        /// <returns></returns>
         public IEnumerable<Property> GetAll()
         {
             return _context.Properties.Include(p => p.Tenants);
         }
+
         /// <summary>
-        /// GetNumberOfProperties Function
+        /// Gets the number of all properties
         /// </summary>
-        /// <returns>The amount of all properties</returns>
+        /// <returns></returns>
         public int GetNumberOfProperties()
         {
             return _context.Properties.Count();
         }
+
         /// <summary>
-        /// Remove Function
-        /// Removes a certain property via ID from the Database
-        /// </summary>
-        /// <param name="id"></param>
-        public void Remove(int id)
-        {
-            _context.Properties.Remove(Get(id));
-            _context.SaveChanges();
-        }
-        /// <summary>
-        /// The Update Function
-        /// Edits a certain property from the Database
+        /// Update the values of a single property
         /// </summary>
         /// <param name="property"></param>
         public void Update(Property property)

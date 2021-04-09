@@ -4,5 +4,131 @@
         <name>Data</name>
     </assembly>
     <members>
+        <member name="T:Data.Models.Payment">
+            <summary>
+            Used to document the transactions made from tenants, i.e., paying rent
+            </summary>
+        </member>
+        <member name="P:Data.Models.Payment.Id">
+            <summary>
+            Integer, that serves as an identification number for the object
+            </summary>
+        </member>
+        <member name="P:Data.Models.Payment.Tenant">
+            <summary>
+            The tenant who made the payment
+            </summary>
+        </member>
+        <member name="P:Data.Models.Payment.Amount">
+            <summary>
+            The amount of money given by the tenant
+            </summary>
+        </member>
+        <member name="P:Data.Models.Payment.Date">
+            <summary>
+            Date of the transaction
+            </summary>
+        </member>
+        <member name="T:Data.Models.Property">
+            <summary>
+            The object tenants are assigned to and get their monthly rent decided by
+            A single property can have multiple tenants
+            </summary>
+        </member>
+        <member name="P:Data.Models.Property.Id">
+            <summary>
+            Integer, that serves as an identification number for the object 
+            </summary>
+        </member>
+        <member name="P:Data.Models.Property.Address">
+            <summary>
+            Name of the address of the property (Location)
+            </summary>
+        </member>
+        <member name="P:Data.Models.Property.Beds">
+            <summary>
+            Number of beds for the given property
+            </summary>
+        </member>
+        <member name="P:Data.Models.Property.Rooms">
+            <summary>
+            Number of rooms for the given property
+            </summary>
+        </member>
+        <member name="P:Data.Models.Property.Area">
+            <summary>
+            Area of the property, mesured in square meters
+            </summary>
+        </member>
+        <member name="P:Data.Models.Property.Rent">
+            <summary>
+            The monthly rent of the property
+            </summary>
+        </member>
+        <member name="P:Data.Models.Property.Tenants">
+            <summary>
+            Reference to a list of tenants, that live in the property
+            </summary>
+        </member>
+        <member name="T:Data.Models.Tenant">
+            <summary>
+            Entity that occupies a single property and makes payments
+            </summary>
+        </member>
+        <member name="P:Data.Models.Tenant.Id">
+            <summary>
+            Integer, that serves as an identification number for the object 
+            </summary>
+        </member>
+        <member name="P:Data.Models.Tenant.FirstName">
+            <summary>
+            First name of the tenant
+            </summary>
+        </member>
+        <member name="P:Data.Models.Tenant.LastName">
+            <summary>
+            Last name of the tenant
+            </summary>
+        </member>
+        <member name="P:Data.Models.Tenant.FullName">
+            <summary>
+            The first and last name of the tenant, combined
+            </summary>
+        </member>
+        <member name="P:Data.Models.Tenant.Email">
+            <summary>
+            Personal email of the tenant
+            </summary>
+        </member>
+        <member name="P:Data.Models.Tenant.PhoneNumber">
+            <summary>
+            Phone number of the tenant
+            </summary>
+        </member>
+        <member name="P:Data.Models.Tenant.DateOfMovingIn">
+            <summary>
+            The date, the tenant moved into the property
+            </summary>
+        </member>
+        <member name="P:Data.Models.Tenant.IsKickedOut">
+            <summary>
+            If true, tenant is ignored
+            </summary>
+        </member>
+        <member name="P:Data.Models.Tenant.RentedProperty">
+            <summary>
+            The property, the given tenant occupies
+            </summary>
+        </member>
+        <member name="P:Data.Models.Tenant.Payments">
+            <summary>
+            List of payments, the tenant has made
+            </summary>
+        </member>
+        <member name="T:Data.RmsContext">
+            <summary>
+            Database context of the application
+            </summary>
+        </member>
     </members>
 </doc>

@@ -4,50 +4,45 @@ using System.ComponentModel.DataAnnotations;
 namespace Data.Models
 {
     /// <summary>
-    /// Property class
-    /// Creates the inputs for the Models
+    /// The object tenants are assigned to and get their monthly rent decided by
+    /// A single property can have multiple tenants
     /// </summary>
     public class Property
     {
         /// <summary>
-        /// Inputs the Id for the Property class
-        /// With 80 letters for maximum length
+        /// Integer, that serves as an identification number for the object 
         /// </summary>
         public int Id { get; set; }
+        /// <summary>
+        /// Name of the address of the property (Location)
+        /// </summary>
         [StringLength(80)]
         [Required]
-        /// <summary>
-        /// Inputs the Address for the Property class
-        /// With lengh between 1 and 99 letters
-        /// </summary>
         public string Address { get; set; }
-        [Range(1, 99, ErrorMessage = "Invalid value.")]
         /// <summary>
-        /// Inputs the Beds for the Property class
-        /// With lengh between 1 and 99 letters
+        /// Number of beds for the given property
         /// </summary>
+        [Range(1, 99, ErrorMessage = "Invalid value.")]
         public int Beds { get; set; }
-        [Range(1, 99, ErrorMessage = "Invalid value.")]
         /// <summary>
-        /// Inputs the Rooms for the Property class
-        /// With price between 1 and 99999 Euro
+        /// Number of rooms for the given property
         /// </summary>
+        [Range(1, 99, ErrorMessage = "Invalid value.")]
         public int Rooms { get; set; }
+        /// <summary>
+        /// Area of the property, mesured in square meters
+        /// </summary>
         [Range(1, 99999, ErrorMessage = "Invalid value.")]
         [Display(Name = "Area In Square Meters")]
-        /// <summary>
-        /// Inputs the Area for the Area class
-        ///? With price between 1 and 99999 Euro?
-        /// </summary>
         public int Area { get; set; }
+        /// <summary>
+        /// The monthly rent of the property
+        /// </summary>
         [Display(Name = "Monthly Rent In Euro")]
         [Range(0, 99999, ErrorMessage = "Invalid value.")]
-        /// <summary>
-        /// Inputs the Rent for the Area class
-        /// </summary>
         public int Rent { get; set; }
         /// <summary>
-        /// Inputs the Tenants for the Area class
+        /// Reference to a list of tenants, that live in the property
         /// </summary>
         public virtual IEnumerable<Tenant> Tenants { get; set; }
     }

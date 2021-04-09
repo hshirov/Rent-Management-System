@@ -9,32 +9,32 @@ using Services.Common;
 namespace Services
 {
     /// <summary>
-    /// The TenantService class
-    /// Manages the actions for the Tenants
+    /// Handles most of the business logic, that has to do with the tenant
     /// </summary>
     public class TenantService : ITenant
     {
         private RmsContext _context;
         private IProperty _properties;
         private IPayment _payments;
+
         /// <summary>
-        /// Constructor for the class TenantService
+        /// Constructor for the class
         /// </summary>
-        /// <param name="context"></param>
-        /// <param name="properties"></param>
-        /// <param name="payments"></param>
+        /// <param name="context">Database context</param>
+        /// <param name="properties">Property service</param>
+        /// <param name="payments">Payment service</param>
         public TenantService(RmsContext context, IProperty properties, IPayment payments)
         {
             _context = context;
             _properties = properties;
             _payments = payments;
         }
+
         /// <summary>
-        /// The Add Function
-        /// Adds a new Tenant to the Database
+        /// Adds a new Tenant and links him to a property
         /// </summary>
-        /// <param name="tenant"></param>
-        /// <param name="rentedPropertyId"></param>
+        /// <param name="tenant">Tenant object</param>
+        /// <param name="rentedPropertyId">Id for a rented property instance</param>
         public void Add(Tenant tenant, int rentedPropertyId)
         {
             tenant.FirstName = StringManipulation.NormalizeName(tenant.FirstName);
@@ -42,46 +42,49 @@ namespace Services
             tenant.FullName = tenant.FirstName + " " + tenant.LastName;
 
             tenant.RentedProperty = _properties.Get(rentedPropertyId);
-            tenant.MonthlyRent = CalculateMonthlyRent(rentedPropertyId);
             tenant.IsKickedOut = false;
 
             _context.Add(tenant);
             _context.SaveChanges();
         }
+
         /// <summary>
-        /// Get Function
+        /// Get a single tenant by id
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns>The specified Tenant via ID</returns>
+        /// <param name="id">Tenant id</param>
+        /// <returns>Tenant with the corresponding id or null if not found</returns>
         public Tenant Get(int id)
         {
             return GetAll().FirstOrDefault(t => t.Id == id);
         }
+
         /// <summary>
-        /// GetAll Function
+        /// Get all tenant records, except for the ones kicked out
         /// </summary>
-        /// <returns>All the Tenants</returns>
+        /// <returns>All tenants</returns>
         public IEnumerable<Tenant> GetAll()
         {
             return _context.Tenants
-                .Where(t => t.IsKickedOut == false)
+                .Where(t => !t.IsKickedOut)
                 .Include(t => t.RentedProperty)
                 .Include(t => t.Payments);
         }
+
         /// <summary>
-        /// GetAllFromProperty Function
+        /// Get all tenant records from a specific property
         /// </summary>
-        /// <param name="propertyId"></param>
-        /// <returns>All the Tenants from  a specific Property via propertyID</returns>
+        /// <param name="propertyId">Id of the property</param>
+        /// <returns>All tenants found</returns>
         public IEnumerable<Tenant> GetAllFromProperty(int propertyId)
         {
-            return GetAll().Where(t => t.RentedProperty.Id == propertyId && !t.IsKickedOut);
+            return GetAll().Where(t => t.RentedProperty.Id == propertyId);
         }
+
         /// <summary>
-        /// GetMoneyOwed Function
+        /// Calculate the debt of a single tenant
         /// </summary>
-        /// <param name="tenantId"></param>
-        /// <returns>Returns the amount of money a certain Tenant owes</returns>
+        /// <param name="tenantId">Id of the tenant</param>
+        /// <returns>The amount of money owed</returns>
         public double GetMoneyOwed(int tenantId)
         {
             int factor = GetMonthsSinceMovingIn(tenantId);
@@ -92,39 +95,42 @@ namespace Services
                 factor = GetMonthsSinceLastPayment(tenantId);
             }
 
-            return Get(tenantId).MonthlyRent * factor;
+            return CalculateMonthlyRent(tenantId) * factor;
         }
+
         /// <summary>
-        /// GetNumberOFTenants Function
+        /// Get the number of all tenant records
         /// </summary>
-        /// <returns>The number of all Tenants</returns>
+        /// <returns>Tenant count</returns>
         public int GetNumberOfTenants()
         {
-            return _context.Tenants.Where(t => !t.IsKickedOut).Count();
+            return GetAll().Count();
         }
+
         /// <summary>
-        /// IsEmailTaken
+        /// Checks if there is a tenant with the given email
         /// </summary>
-        /// <param name="email"></param>
-        /// <returns>Whether a certain E-mail is taken or not</returns>
+        /// <param name="email">The email being checked</param>
+        /// <returns></returns>
         public bool IsEmailTaken(string email)
         {
             return GetAll().Any(t => t.Email == email);
         }
         /// <summary>
-        /// GetNumberOfTenantsInProperty Function
+        /// Get the number of all tenant records that occupy a given property
         /// </summary>
-        /// <param name="propertyId"></param>
-        /// <returns>The number of Tenants in a certain Property via PropertyID</returns>
+        /// <param name="propertyId">Id of the property</param>
+        /// <returns>The number of tenants</returns>
         public int GetNumberOfTenantsInProperty(int propertyId)
         {
             return GetAll().Where(t => t.RentedProperty.Id == propertyId).Count();
         }
+
         /// <summary>
-        /// HasPayments Function
+        /// Check if a user has made any payments
         /// </summary>
         /// <param name="tenantId"></param>
-        /// <returns>Whether a certain Tenant has any Payments</returns>
+        /// <returns></returns>
         public bool HasPayments(int tenantId)
         {
             if (Get(tenantId) == null || _payments.GetAllFromTenant(tenantId).FirstOrDefault() == null)
@@ -135,10 +141,9 @@ namespace Services
             return true;
         }
         /// <summary>
-        /// KickOut Function
-        /// Removes a Tenant via Id from the Database
+        /// Set IsKickedOut to true
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Id of user getting kicked out</param>
         public void KickOut(int id)
         {
             Tenant tenant = Get(id);
@@ -148,9 +153,9 @@ namespace Services
 
             _context.SaveChanges();
         }
+
         /// <summary>
-        /// Update Function
-        ///  Edits a Tenant's data from the Database
+        /// Update tenant data
         /// </summary>
         /// <param name="tenant"></param>
         public void Update(Tenant tenant)
@@ -160,11 +165,12 @@ namespace Services
 
             _context.SaveChanges();
         }
+
         /// <summary>
-        /// GetMonthsSinceLastPayment
+        /// Get the number of months passed since a tenant's last payment
         /// </summary>
         /// <param name="tenantId"></param>
-        /// <returns>The number of months since last Payment for a certain Tenant</returns>
+        /// <returns></returns>
         private int GetMonthsSinceLastPayment(int tenantId)
         {
             // Check if payments is empty
@@ -176,27 +182,26 @@ namespace Services
             TimeSpan date = DateTime.Now - Get(tenantId).Payments.Last().Date;
             return date.Days / 30;
         }
+
         /// <summary>
-        /// GetMonthsSinceMovingIn
+        /// Get the number of months passed since a tenant moved into a property
         /// </summary>
         /// <param name="tenantId"></param>
-        /// <returns>The number of months since the Tenant has moved in</returns>
+        /// <returns></returns>
         private int GetMonthsSinceMovingIn(int tenantId)
         {
             return (int)(DateTime.Now - Get(tenantId).DateOfMovingIn).TotalDays / 30;
         }
-        /// <summary>
-        /// CalculateMonthlyRent
-        /// </summary>
-        /// <param name="tenantId"></param>
-        /// <param name="propertyId"></param>
-        /// <returns>The sum a certain Tenants owes for the month</returns>
-        private double CalculateMonthlyRent(int propertyId)
-        {
-            // Split the rent equally between tenants
-            int numberOfTenants = GetNumberOfTenantsInProperty(propertyId) + 1;
 
-            return _properties.Get(propertyId).Rent / numberOfTenants;
+        /// <summary>
+        /// Divide the rent of the property equally between the tenants
+        /// </summary>
+        /// <param name="tenantId">Id of the tenant beign evaluated</param>
+        /// <returns></returns>
+        private double CalculateMonthlyRent(int tenantId)
+        {
+            int propertyId = Get(tenantId).RentedProperty.Id;
+            return _properties.Get(propertyId).Rent / GetNumberOfTenantsInProperty(propertyId);
         }
     }
 }

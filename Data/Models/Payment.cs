@@ -4,36 +4,30 @@ using System.ComponentModel.DataAnnotations;
 namespace Data.Models
 {
     /// <summary>
-    /// Payment class
-    /// Creates the inputs for the Models
+    /// Used to document the transactions made from tenants, i.e., paying rent
     /// </summary>
     public class Payment
     {
         /// <summary>
-        /// Inputs the Id for the Payment class
+        /// Integer, that serves as an identification number for the object
         /// </summary>
         public int Id { get; set; }
         /// <summary>
-        /// Inputs the Tenant for the Payment class
+        /// The tenant who made the payment
         /// </summary>
         public Tenant Tenant { get; set; }
+        /// <summary>
+        /// The amount of money given by the tenant
+        /// </summary>
         [Required]
         [Display(Name = "Amount In Euros")]
         [Range(1, 999999, ErrorMessage = "Invalid value.")]
-        /// <summary>
-        /// Sets the criteria for the Sum 
-        /// Inputs the Amount for the Payment class
-        /// </summary>
         public double Amount { get; set; }
         /// <summary>
-        /// Sets the Date Format
-        /// Inputs the Date for the Payment class
+        /// Date of the transaction
         /// </summary>
         [Required]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        /// <summary>
-        /// Inputs the Date for the Payment class
-        /// </summary>
         public DateTime Date { get; set; }
     }
 }
