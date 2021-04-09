@@ -8,6 +8,7 @@ namespace Services
 {
     /// <summary>
     /// The PropertyService Class
+    /// Manages the actions for the Properties
     /// </summary>
     public class PropertyService : IProperty
     {
@@ -21,7 +22,8 @@ namespace Services
             _context = context;
         }
         /// <summary>
-        /// The Add Function - Adds a new property
+        /// The Add Function
+        ///  Adds a new property to the Database
         /// </summary>
         /// <param name="property"></param>
         public void Add(Property property)
@@ -55,7 +57,8 @@ namespace Services
             return _context.Properties.Count();
         }
         /// <summary>
-        /// Remove Function - Removes a certain property via ID
+        /// Remove Function
+        /// Removes a certain property via ID from the Database
         /// </summary>
         /// <param name="id"></param>
         public void Remove(int id)
@@ -64,7 +67,8 @@ namespace Services
             _context.SaveChanges();
         }
         /// <summary>
-        /// The Update Function - Edits a certain property
+        /// The Update Function
+        /// Edits a certain property from the Database
         /// </summary>
         /// <param name="property"></param>
         public void Update(Property property)

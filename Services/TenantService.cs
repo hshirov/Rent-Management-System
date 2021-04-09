@@ -10,6 +10,7 @@ namespace Services
 {
     /// <summary>
     /// The TenantService class
+    /// Manages the actions for the Tenants
     /// </summary>
     public class TenantService : ITenant
     {
@@ -29,7 +30,8 @@ namespace Services
             _payments = payments;
         }
         /// <summary>
-        /// The Add Function - Adds a new Tenant
+        /// The Add Function
+        /// Adds a new Tenant to the Database
         /// </summary>
         /// <param name="tenant"></param>
         /// <param name="rentedPropertyId"></param>
@@ -133,7 +135,8 @@ namespace Services
             return true;
         }
         /// <summary>
-        /// KickOut Function - Removes a Tenant via Id
+        /// KickOut Function
+        /// Removes a Tenant via Id from the Database
         /// </summary>
         /// <param name="id"></param>
         public void KickOut(int id)
@@ -146,7 +149,8 @@ namespace Services
             _context.SaveChanges();
         }
         /// <summary>
-        /// Update Function - Edits a Tenant's data
+        /// Update Function
+        ///  Edits a Tenant's data from the Database
         /// </summary>
         /// <param name="tenant"></param>
         public void Update(Tenant tenant)

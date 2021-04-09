@@ -9,7 +9,7 @@
         /// Normalize Name Function
         /// </summary>
         /// <param name="name"></param>
-        /// <returns>The specified string to title lower case</returns>
+        /// <returns>The specified string with the first character capitalized</returns>
         public static string NormalizeName(string name)
         {
             return System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(name.ToLower());
