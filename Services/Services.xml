@@ -1,0 +1,264 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Services</name>
+    </assembly>
+    <members>
+        <member name="T:Services.Common.StringManipulation">
+            <summary>
+            String Manipulation class
+            </summary>
+        </member>
+        <member name="M:Services.Common.StringManipulation.NormalizeName(System.String)">
+            <summary>
+            Normalize Name Function
+            </summary>
+            <param name="name"></param>
+            <returns>The specified string with the first character capitalized</returns>
+        </member>
+        <member name="T:Services.PaymentService">
+            <summary>
+            Payment Service class
+            Manages the actions for the Payments
+            </summary>
+        </member>
+        <member name="M:Services.PaymentService.#ctor(Data.RmsContext)">
+            <summary>
+            Constuctor for the class Payment Service
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Services.PaymentService.Add(Data.Models.Payment)">
+            <summary>
+            Add function
+            Adds a new Payment to the Database
+            </summary>
+            <param name="payment"></param>
+        </member>
+        <member name="M:Services.PaymentService.Get(System.Int32)">
+            <summary>
+            Get Function
+            </summary>
+            <param name="id"></param>
+            <returns>The specified Payment via ID</returns>
+        </member>
+        <member name="M:Services.PaymentService.GetAll">
+            <summary>
+            GetAll Function
+            </summary>
+            <returns>All the Payments</returns>
+        </member>
+        <member name="M:Services.PaymentService.GetAllFromTenant(System.Int32)">
+            <summary>
+            GetAllFromTenant Function
+            </summary>
+            <param name="tenantId"></param>
+            <returns>All the Payments of the specified tenant via ID</returns>
+        </member>
+        <member name="M:Services.PaymentService.GetPaymentSum(System.Int32)">
+            <summary>
+            GetPaymentSum
+            </summary>
+            <param name="tenantId"></param>
+            <returns>Sum of all the Payments</returns>
+        </member>
+        <member name="M:Services.PaymentService.GetAllFromMonth(System.Int32)">
+            <summary>
+            GetAllFromMonth Function
+            </summary>
+            <param name="month"></param>
+            <returns>The number of all the Payments from the last month</returns>
+        </member>
+        <member name="M:Services.PaymentService.GetAmountFromMonth(System.Int32)">
+            <summary>
+            GetAmountFromMonth Function
+            </summary>
+            <param name="month"></param>
+            <returns>Specified Payment from the last month</returns>
+        </member>
+        <member name="M:Services.PaymentService.GetAmountFromYear(System.Int32)">
+            <summary>
+            GetAmountFromYear Function
+            </summary>
+            <param name="year"></param>
+            <returns>The Number of all the Payments from the last year</returns>
+        </member>
+        <member name="M:Services.PaymentService.GetAmountFromAllTime">
+            <summary>
+            GetAmountFromAllTime
+            </summary>
+            <returns>All the Payments since the beginning</returns>
+        </member>
+        <member name="M:Services.PaymentService.GetPaymentsAmount(System.Collections.Generic.IEnumerable{Data.Models.Payment})">
+            <summary>
+            GetPaymentsAmount
+            </summary>
+            <param name="payments"></param>
+            <returns>The number of Payments</returns>
+        </member>
+        <member name="T:Services.PropertyService">
+            <summary>
+            The PropertyService Class
+            Manages the actions for the Properties
+            </summary>
+        </member>
+        <member name="M:Services.PropertyService.#ctor(Data.RmsContext)">
+            <summary>
+            Constuctor for the class Property Service
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Services.PropertyService.Add(Data.Models.Property)">
+            <summary>
+            The Add Function
+             Adds a new property to the Database
+            </summary>
+            <param name="property"></param>
+        </member>
+        <member name="M:Services.PropertyService.Get(System.Int32)">
+            <summary>
+            The Get Function
+            </summary>
+            <param name="id"></param>
+            <returns>The specified Property via ID</returns>
+        </member>
+        <member name="M:Services.PropertyService.GetAll">
+            <summary>
+            The GetAll Function
+            </summary>
+            <returns>All the Properties</returns>
+        </member>
+        <member name="M:Services.PropertyService.GetNumberOfProperties">
+            <summary>
+            GetNumberOfProperties Function
+            </summary>
+            <returns>The amount of all properties</returns>
+        </member>
+        <member name="M:Services.PropertyService.Remove(System.Int32)">
+            <summary>
+            Remove Function
+            Removes a certain property via ID from the Database
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:Services.PropertyService.Update(Data.Models.Property)">
+            <summary>
+            The Update Function
+            Edits a certain property from the Database
+            </summary>
+            <param name="property"></param>
+        </member>
+        <member name="T:Services.TenantService">
+            <summary>
+            The TenantService class
+            Manages the actions for the Tenants
+            </summary>
+        </member>
+        <member name="M:Services.TenantService.#ctor(Data.RmsContext,Data.IProperty,Data.IPayment)">
+            <summary>
+            Constructor for the class TenantService
+            </summary>
+            <param name="context"></param>
+            <param name="properties"></param>
+            <param name="payments"></param>
+        </member>
+        <member name="M:Services.TenantService.Add(Data.Models.Tenant,System.Int32)">
+            <summary>
+            The Add Function
+            Adds a new Tenant to the Database
+            </summary>
+            <param name="tenant"></param>
+            <param name="rentedPropertyId"></param>
+        </member>
+        <member name="M:Services.TenantService.Get(System.Int32)">
+            <summary>
+            Get Function
+            </summary>
+            <param name="id"></param>
+            <returns>The specified Tenant via ID</returns>
+        </member>
+        <member name="M:Services.TenantService.GetAll">
+            <summary>
+            GetAll Function
+            </summary>
+            <returns>All the Tenants</returns>
+        </member>
+        <member name="M:Services.TenantService.GetAllFromProperty(System.Int32)">
+            <summary>
+            GetAllFromProperty Function
+            </summary>
+            <param name="propertyId"></param>
+            <returns>All the Tenants from  a specific Property via propertyID</returns>
+        </member>
+        <member name="M:Services.TenantService.GetMoneyOwed(System.Int32)">
+            <summary>
+            GetMoneyOwed Function
+            </summary>
+            <param name="tenantId"></param>
+            <returns>Returns the amount of money a certain Tenant owes</returns>
+        </member>
+        <member name="M:Services.TenantService.GetNumberOfTenants">
+            <summary>
+            GetNumberOFTenants Function
+            </summary>
+            <returns>The number of all Tenants</returns>
+        </member>
+        <member name="M:Services.TenantService.IsEmailTaken(System.String)">
+            <summary>
+            IsEmailTaken
+            </summary>
+            <param name="email"></param>
+            <returns>Whether a certain E-mail is taken or not</returns>
+        </member>
+        <member name="M:Services.TenantService.GetNumberOfTenantsInProperty(System.Int32)">
+            <summary>
+            GetNumberOfTenantsInProperty Function
+            </summary>
+            <param name="propertyId"></param>
+            <returns>The number of Tenants in a certain Property via PropertyID</returns>
+        </member>
+        <member name="M:Services.TenantService.HasPayments(System.Int32)">
+            <summary>
+            HasPayments Function
+            </summary>
+            <param name="tenantId"></param>
+            <returns>Whether a certain Tenant has any Payments</returns>
+        </member>
+        <member name="M:Services.TenantService.KickOut(System.Int32)">
+            <summary>
+            KickOut Function
+            Removes a Tenant via Id from the Database
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:Services.TenantService.Update(Data.Models.Tenant)">
+            <summary>
+            Update Function
+             Edits a Tenant's data from the Database
+            </summary>
+            <param name="tenant"></param>
+        </member>
+        <member name="M:Services.TenantService.GetMonthsSinceLastPayment(System.Int32)">
+            <summary>
+            GetMonthsSinceLastPayment
+            </summary>
+            <param name="tenantId"></param>
+            <returns>The number of months since last Payment for a certain Tenant</returns>
+        </member>
+        <member name="M:Services.TenantService.GetMonthsSinceMovingIn(System.Int32)">
+            <summary>
+            GetMonthsSinceMovingIn
+            </summary>
+            <param name="tenantId"></param>
+            <returns>The number of months since the Tenant has moved in</returns>
+        </member>
+        <member name="M:Services.TenantService.CalculateMonthlyRent(System.Int32)">
+            <summary>
+            CalculateMonthlyRent
+            </summary>
+            <param name="tenantId"></param>
+            <param name="propertyId"></param>
+            <returns>The sum a certain Tenants owes for the month</returns>
+        </member>
+    </members>
+</doc>

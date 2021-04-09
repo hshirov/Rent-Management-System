@@ -78,6 +78,33 @@ namespace Rent_Management_System.Controllers
             return View(model);
         }
 
+        public IActionResult Edit(int id)
+        {
+            Tenant tenant = _tenants.Get(id);
+
+            return View(tenant);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Tenant model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (model.Email != _tenants.Get(model.Id).Email && _tenants.IsEmailTaken(model.Email))
+                {
+                    ModelState.AddModelError("Tenant.Email", "This email is already taken.");
+                    return View(model);
+                }
+
+                _tenants.Update(model);
+
+                return RedirectToAction("Index", new { id = model.Id });
+            }
+
+            return View(model);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Add(AddTenantModel model)

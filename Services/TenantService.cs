@@ -42,7 +42,7 @@ namespace Services
             tenant.FullName = tenant.FirstName + " " + tenant.LastName;
 
             tenant.RentedProperty = _properties.Get(rentedPropertyId);
-            tenant.MonthlyRent = CalculateMonthlyRent(tenant.Id, rentedPropertyId);
+            tenant.MonthlyRent = CalculateMonthlyRent(rentedPropertyId);
             tenant.IsKickedOut = false;
 
             _context.Add(tenant);
@@ -191,17 +191,12 @@ namespace Services
         /// <param name="tenantId"></param>
         /// <param name="propertyId"></param>
         /// <returns>The sum a certain Tenants owes for the month</returns>
-        private double CalculateMonthlyRent(int tenantId, int propertyId)
+        private double CalculateMonthlyRent(int propertyId)
         {
             // Split the rent equally between tenants
             int numberOfTenants = GetNumberOfTenantsInProperty(propertyId) + 1;
 
-            if (numberOfTenants > 0)
-            {
-                return _properties.Get(propertyId).Rent / numberOfTenants;
-            }
-
-            return _properties.Get(propertyId).Rent;
+            return _properties.Get(propertyId).Rent / numberOfTenants;
         }
     }
 }

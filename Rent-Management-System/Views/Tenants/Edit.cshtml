@@ -1,0 +1,43 @@
+﻿@model Data.Models.Tenant
+
+@{
+    ViewData["Title"] = "Edit Tenant";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="centered-form">
+        <div class="mb-3 ml-3">
+            <h2>Edit Tenant - @Model.FullName</h2>
+        </div>
+        @Html.HiddenFor(model => model.FullName)
+        @Html.HiddenFor(model => model.FirstName)
+        @Html.HiddenFor(model => model.LastName)
+        @Html.HiddenFor(model => model.Payments)
+        @Html.HiddenFor(model => model.DateOfMovingIn)
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.MonthlyRent)
+        @Html.HiddenFor(model => model.RentedProperty)
+        @Html.HiddenFor(model => model.IsKickedOut)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, new { @class = "control-label col-6" })
+            <div class="col-12">
+                @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PhoneNumber, new { @class = "control-label col-6" })
+            <div class="col-12">
+                @Html.EditorFor(m => m.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group centered-button">
+            <div class="col-offset-2 col-3">
+                <button type="submit" class="btn btn-info btn-block">Update</button>
+            </div>
+        </div>
+    </div>
+}

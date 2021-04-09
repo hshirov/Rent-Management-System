@@ -83,9 +83,14 @@ namespace Rent_Management_System.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Property property)
         {
-            _properties.Update(property);
+            if (ModelState.IsValid) 
+            { 
+                _properties.Update(property);
 
-            return RedirectToAction("Index", new { id = property.Id });
+                return RedirectToAction("Index", new { id = property.Id });
+            }
+
+            return View(property);
         }
 
         [HttpPost]
