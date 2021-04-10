@@ -1,4 +1,13 @@
-# Rent-Management-System
-Version 1.0.0
+# Rent Management System
 
-This is a school project based on a software application for a rent management system developed on ASP.NET using C#, .NET 5.0 MVC with EF Core. The project uses code first approach.
+A simple and intuitive management system intended for landowners, who need to keep track of properties, tenants and payments.
+
+Built in .NET 5.0 MVC with Entity Framework Core.
+
+## Documentation
+
+<img src="./Documentation/Images/pc_home_index.png" width=800>
+
+### Mobile view
+
+<img src="./Documentation/Images/mobile_home_index.png" width=300>
