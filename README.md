@@ -11,3 +11,11 @@ Built in .NET 5.0 MVC with Entity Framework Core.
 ### Mobile view
 
 <img src="./Documentation/Images/mobile_home_index.png" width=300>
+
+### Properties
+
+<img src="./Documentation/Images/Properties.png" width=800>
+
+### Tenants
+
+<img src="./Documentation/Images/Tenants.png" width=800>
